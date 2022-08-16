@@ -1,11 +1,19 @@
 <template>
   <div class="logo">
     <img :src="PROJECT_LOGO_URL" alt="logo" />
-    <span>{{ PROJECT_TITLE }}</span>
+    <span v-show="isShowText">{{ PROJECT_TITLE }}</span>
   </div>
 </template>
 <script setup lang="ts">
 import { PROJECT_TITLE, PROJECT_LOGO_URL } from '../../../../../config'
+import { useApplication } from '../../../../../store'
+
+const appStore = useApplication()
+
+// 是否展示标题
+const isShowText = computed(() => {
+  return appStore.opened
+})
 </script>
 <style lang="scss" scoped>
 .logo {

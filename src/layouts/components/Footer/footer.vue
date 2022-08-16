@@ -1,5 +1,15 @@
 <template>
-  <div>我是foot组件</div>
+  <div class="footer">
+    <span>{{ FOOTER_MESSAGE }}</span>
+  </div>
 </template>
-<script setup lang="ts"></script>
-<style lang="scss" scoped></style>
+<script setup lang="ts">
+import { FOOTER_MESSAGE } from '../../../config'
+</script>
+<style lang="scss" scoped>
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

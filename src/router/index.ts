@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { App } from 'vue'
 
 import Layout from '../layouts/index.vue'
 
@@ -23,4 +24,7 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 })
-export default router
+// 注册路由
+export function setupRouter(app: App) {
+  app.use(router)
+}
