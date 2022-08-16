@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
+import Layout from '../layouts/index.vue'
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -8,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: () => import('../views/Dashboard/dashboard.vue'),
+    component: Layout,
   },
   {
     path: '/login',
