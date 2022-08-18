@@ -1,8 +1,7 @@
 <template>
-  <!-- 侧边栏logo信息 -->
-  <AsideLogo />
+  <AsideMenu />
 </template>
 <script setup lang="ts">
-import AsideLogo from './components/AsideLogo/asideLogo.vue'
+import AsideMenu from './components/AsideMenu/asideMenu.vue'
 </script>
 <style lang="scss" scoped></style>

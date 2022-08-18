@@ -1,7 +1,7 @@
 <template>
   <el-container class="layout-container">
     <!-- 侧边栏 -->
-    <el-aside width="200px" class="aside-container">
+    <el-aside width="auto" class="aside-container">
       <!-- 菜单栏 -->
       <Aside />
     </el-aside>
@@ -32,7 +32,8 @@ import Aside from './components/Aside/aside.vue'
 .layout-container {
   height: 100%;
   .aside-container {
-    background-color: rgba(48, 65, 86, 0.9);
+    // #304156
+    background-color: rgba(45, 65, 86, 0.9);
   }
   .header-container {
     height: 50px;

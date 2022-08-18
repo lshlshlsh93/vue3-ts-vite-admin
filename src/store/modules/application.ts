@@ -6,4 +6,9 @@ export const appStore = defineStore({
     opened: true,
     device: 'desktop',
   }),
+  actions: {
+    setCollapse(): boolean {
+      return (this.opened = !this.opened)
+    },
+  },
 })
