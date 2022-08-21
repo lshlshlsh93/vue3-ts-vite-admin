@@ -13,7 +13,7 @@
       <!-- 主体 -->
       <el-main class="main-container">
         <!-- 当前激活 tab 面板 -->
-        Main
+        <Tabs />
         <!-- 路由出口 -->
         <router-view />
       </el-main>
@@ -27,13 +27,14 @@
 import Footer from './components/Footer/footer.vue'
 import Header from './components/Header/header.vue'
 import Aside from './components/Aside/aside.vue'
+import Tabs from './components/Tabs/tabs.vue'
 </script>
 <style lang="scss" scoped>
 .layout-container {
   height: 100%;
   .aside-container {
     // #304156
-    background-color: rgba(45, 65, 86, 0.9);
+    background-color: rgb(48, 65, 86);
   }
   .header-container {
     height: 50px;

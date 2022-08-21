@@ -6,24 +6,26 @@
       :key="item.path"
     >
       <template #title>
-        <span>{{ item.meta.title }}</span>
+        <el-icon>
+          <Edit /> <span>{{ item.meta.name }}</span>
+        </el-icon>
       </template>
       <!-- 递归调用自己 -->
       <aside-item :menuList="item.children" />
     </el-sub-menu>
-    <el-menu-item v-else :index="item.path">
+    <el-menu-item class="menu-item" v-else :index="item.path">
       <template #title>
-        <span class="title">{{ item.meta.title }}</span>
+        {{ item.meta.name }}
       </template>
     </el-menu-item>
   </template>
 </template>
 <script setup lang="ts">
+import { Edit } from '@element-plus/icons-vue'
 const props = defineProps(['menuList'])
 </script>
 <style lang="scss" scoped>
-.title {
-  font-size: 14px;
-  font-weight: 600;
+.menu-item {
+  color: #f4f5f6;
 }
 </style>

@@ -4,10 +4,11 @@ interface IDataType {
   name?: string
   alwaysShow?: boolean
   meta: {
-    title: string
+    name: string
     icon?: string
     roles?: string[]
     parentId?: number
+    [key: string]: any
   }
   children?: IDataType[]
 }
@@ -18,7 +19,7 @@ export const menuList = ref<IDataType[]>([
     path: '/dashboard',
     component: 'Layout',
     meta: {
-      title: '首页',
+      name: '首页',
       icon: 'HomeFilled',
       roles: ['sys:manage'],
     },
@@ -30,7 +31,7 @@ export const menuList = ref<IDataType[]>([
     alwaysShow: true,
     component: 'Layout',
     meta: {
-      title: '系统管理',
+      name: '系统管理',
       icon: 'Menu',
       roles: ['sys:manage'],
       parentId: 0,
@@ -42,7 +43,7 @@ export const menuList = ref<IDataType[]>([
         alwaysShow: false,
         component: '/system/department/department',
         meta: {
-          title: '部门管理',
+          name: '部门管理',
           icon: 'Platform',
           roles: ['sys:dept'],
           parentId: 17,
@@ -54,7 +55,7 @@ export const menuList = ref<IDataType[]>([
         alwaysShow: false,
         component: '/system/user/userList',
         meta: {
-          title: '用户管理',
+          name: '用户管理',
           icon: 'UserFilled',
           roles: ['sys:user'],
           parentId: 17,
@@ -66,7 +67,7 @@ export const menuList = ref<IDataType[]>([
         alwaysShow: false,
         component: '/system/role/roleList',
         meta: {
-          title: '角色管理',
+          name: '角色管理',
           icon: 'StarFilled',
           roles: ['sys:role'],
           parentId: 17,
@@ -78,7 +79,7 @@ export const menuList = ref<IDataType[]>([
         alwaysShow: false,
         component: '/system/menu/menuList',
         meta: {
-          title: '菜单管理',
+          name: '菜单管理',
           icon: 'IceCreamSquare',
           roles: ['sys:menu'],
           parentId: 17,
@@ -92,7 +93,7 @@ export const menuList = ref<IDataType[]>([
     alwaysShow: true,
     component: 'Layout',
     meta: {
-      title: '商品管理',
+      name: '商品管理',
       icon: 'Edit',
       roles: ['sys:goods'],
       parentId: 0,
@@ -104,7 +105,7 @@ export const menuList = ref<IDataType[]>([
         alwaysShow: false,
         component: '/system/goodsCategory/goodsCategoryList',
         meta: {
-          title: '商品分类',
+          name: '商品分类',
           icon: 'Share',
           roles: ['sys:goodsCategory'],
           parentId: 34,
@@ -118,7 +119,7 @@ export const menuList = ref<IDataType[]>([
     alwaysShow: true,
     component: 'Layout',
     meta: {
-      title: '系统工具',
+      name: '系统工具',
       icon: 'SetUp',
       roles: ['sys:tools'],
       parentId: 0,
@@ -130,7 +131,7 @@ export const menuList = ref<IDataType[]>([
         alwaysShow: false,
         component: '/system/config/systemDocument',
         meta: {
-          title: '接口文档',
+          name: '接口文档',
           icon: 'Document',
           roles: ['sys:document'],
           parentId: 42,

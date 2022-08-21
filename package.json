@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.9",
+    "dayjs": "^1.11.5",
+    "echarts": "^5.3.3",
     "element-plus": "^2.2.13",
     "pinia": "^2.0.18",
     "vue": "^3.2.37",

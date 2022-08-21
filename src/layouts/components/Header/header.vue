@@ -1,16 +1,21 @@
 <template>
-  <div class="header-container">
-    <span>
-      <!-- 折叠 -->
-      <Collapse />
-    </span>
+  <div class="navbar">
+    <!-- 折叠 -->
+    <Collapse />
+    <Breadcrumb />
+    <div class="navbar-right">
+      <!-- 头像 -->
+      <Avatar class="navbar-item" />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
 import Collapse from './components/Collapse/collapse.vue'
+import Avatar from './components/Avatar/avatar.vue'
+import Breadcrumb from './components/BreadCrumb/breadcrumb.vue'
 </script>
 <style lang="scss" scoped>
-.header-container {
+.navbar {
   width: 100%;
   height: 60px;
   overflow: hidden;
@@ -20,5 +25,20 @@ import Collapse from './components/Collapse/collapse.vue'
   align-items: center;
   box-sizing: border-box;
   position: relative;
+  .navbar-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    :deep(.navbar-item) {
+      display: inline-block;
+      margin-right: 5px;
+      margin-top: 5px;
+      font-size: 22px;
+      box-sizing: border-box;
+      cursor: pointer;
+      color: #5a5e66;
+    }
+  }
 }
 </style>

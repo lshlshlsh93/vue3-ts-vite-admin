@@ -12,6 +12,17 @@ const routes: Array<RouteRecordRaw> = [
     path: '/dashboard',
     name: 'dashboard',
     component: Layout,
+    children: [
+      {
+        path: '/dashboard',
+        component: () => import('../views/Dashboard/dashboard.vue'),
+        name: 'dashboard',
+        meta: {
+          name: '首页',
+          icon: '#icondashboard',
+        },
+      },
+    ],
   },
   {
     path: '/login',
@@ -24,6 +35,7 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 })
+
 // 注册路由
 export function setupRouter(app: App) {
   app.use(router)

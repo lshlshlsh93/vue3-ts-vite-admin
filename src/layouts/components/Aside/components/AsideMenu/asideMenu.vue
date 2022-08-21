@@ -19,19 +19,18 @@ import AsideLogo from '../AsideLogo/asideLogo.vue'
 import MenuItem from '../AsideItem/asideItem.vue'
 import { useApplication } from '../../../../../store'
 import { RouteLocationNormalizedLoaded, useRoute } from 'vue-router'
-import { ComputedRef } from 'vue'
 import { menuList } from './data'
 
 const route: RouteLocationNormalizedLoaded = useRoute()
 const appStore = useApplication()
 
 // 当前激活的菜单
-const activeMenu: ComputedRef<string> = computed(() => {
+const activeMenu = computed(() => {
   const { path } = route
   return path
 })
 // 是否关闭
-const isCollapse: ComputedRef<boolean> = computed(() => {
+const isCollapse = computed(() => {
   return !appStore.opened
 })
 const handleOpen = (key: string | number, keyPath: string[]) => {}
@@ -40,13 +39,13 @@ const handleClose = (key: string | number, keyPath: string[]) => {}
 <style lang="scss" scoped>
 @keyframes logoAnimation {
   0% {
-    transform: scale(0);
+    transform: scale(0, 0);
   }
   50% {
-    transform: scale(1);
+    transform: scale(1, 1);
   }
   100% {
-    transform: scale(1);
+    transform: scale(1, 1);
   }
 }
 
@@ -55,7 +54,7 @@ const handleClose = (key: string | number, keyPath: string[]) => {}
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 230px;
-  min-height: 200px;
+  min-height: 400px;
 }
 .el-menu {
   border-right: none;

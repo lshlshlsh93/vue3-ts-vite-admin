@@ -1,5 +1,15 @@
 <template>
-  <div>主页</div>
+  <div class="dashboard-container">
+    <div class="card-container">
+      <Card />
+      <Sale />
+      <Observe />
+    </div>
+  </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Sale from './components/sale/sale.vue'
+import Card from './components/card/card.vue'
+import Observe from './components/Observe/observe.vue'
+</script>
 <style lang="scss" scoped></style>
