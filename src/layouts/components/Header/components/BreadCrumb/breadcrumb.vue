@@ -8,7 +8,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Ref } from 'vue'
+import type { Ref } from 'vue'
 import { useRoute, RouteLocationMatched } from 'vue-router'
 
 const route = useRoute()
@@ -27,16 +27,14 @@ const fetchBreadcrumb = (): void => {
       matched
     )
   }
-  console.log(isDashboard)
-
   tabs.value = matched
-  console.log(tabs)
-
-  fetchBreadcrumb()
-  watch(
-    () => route.path,
-    () => fetchBreadcrumb()
-  )
 }
+// 默认加载
+fetchBreadcrumb()
+// 监听路由发送变化，重新获取面包屑导航数据
+watch(
+  () => route.path,
+  () => fetchBreadcrumb()
+)
 </script>
 <style lang="scss" scoped></style>

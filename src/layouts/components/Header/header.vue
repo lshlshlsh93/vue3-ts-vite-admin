@@ -5,11 +5,13 @@
     <Breadcrumb />
     <div class="navbar-right">
       <!-- 头像 -->
+      <Driver class="navbar-item" />
       <Avatar class="navbar-item" />
     </div>
   </div>
 </template>
 <script setup lang="ts">
+import Driver from './components/Driver/driver.vue'
 import Collapse from './components/Collapse/collapse.vue'
 import Avatar from './components/Avatar/avatar.vue'
 import Breadcrumb from './components/BreadCrumb/breadcrumb.vue'

@@ -121,6 +121,7 @@ const handleReset = (formEl: FormInstance | undefined) => {
       position: absolute;
       bottom: 0;
       width: 100%;
+      height: 100%;
       padding: 0 20px;
       box-sizing: border-box;
       .form-btn {

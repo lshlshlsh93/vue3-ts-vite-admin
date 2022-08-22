@@ -1,7 +1,12 @@
 <template>
   <el-dropdown>
     <span class="el-dropdown-link">
-      <el-avatar sharp="square" :size="size" :src="DEFALUT_AVATAR_IMAGE_URL" />
+      <el-avatar
+        id="avatar"
+        sharp="square"
+        :size="size"
+        :src="DEFALUT_AVATAR_IMAGE_URL"
+      />
     </span>
     <template #dropdown>
       <el-dropdown-menu>

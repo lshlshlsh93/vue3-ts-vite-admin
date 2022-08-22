@@ -37,7 +37,6 @@ const setActiveTab = (): void => {
 const addTab = (): void => {
   // 从当前路由获取path和title
   const { path, meta } = route
-  console.log(route)
 
   const tab: ITab = {
     path: path,
