@@ -193,7 +193,6 @@ watchEffect(() => {
         type: 'bar',
         color: 'cyan',
         data: [78],
-        color: 'yellowgreen',
         // 柱状图宽度
         barWidth: 10,
         // 背景颜色设置
