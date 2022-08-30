@@ -60,9 +60,11 @@
   </el-form>
 </template>
 <script setup lang="ts">
-import { IFormItem } from '../../../interface'
+import { IFormItem } from '@/interface'
 import type { ElForm } from 'element-plus'
+
 type FormInstance = InstanceType<typeof ElForm>
+
 interface IProps {
   formItems?: IFormItem[]
   modelValue: any

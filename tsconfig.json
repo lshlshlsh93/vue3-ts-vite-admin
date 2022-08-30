@@ -11,7 +11,11 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "./", // 解析非相对模块的基础地址，默认是当前目录
+    "paths": {
+      "@/*": ["src/*"] // 路径映射相对于baseUrl
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]

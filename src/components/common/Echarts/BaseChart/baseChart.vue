@@ -4,8 +4,8 @@
 </template>
 <script setup lang="ts">
 import { ref, watchEffect, onMounted } from 'vue'
-import { useEchart } from '../../../../hooks'
-import { ECOption } from '../../../../interface'
+import { useEchart } from '@/hooks'
+import { ECOption } from '@/interface'
 
 type RendererType = 'canvas' | 'svg'
 interface IProps {

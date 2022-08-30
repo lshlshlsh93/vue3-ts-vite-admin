@@ -1,8 +1,12 @@
 import { createApp } from 'vue'
 
-import './styles/scss/global.css'
+import '@/styles/scss/index.scss'
+import '@/assets/iconfont/iconfont'
+import 'element-plus/theme-chalk/src/message.scss'
+import 'element-plus/theme-chalk/src/message-box.scss'
 
 import App from './App.vue'
+
 // 注册全局状态数据
 import { setupStore } from './store'
 

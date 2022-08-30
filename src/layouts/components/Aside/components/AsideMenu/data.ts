@@ -1,20 +1,7 @@
-interface IDataType {
-  path: string
-  component: string
-  name?: string
-  alwaysShow?: boolean
-  meta: {
-    name: string
-    icon?: string
-    roles?: string[]
-    parentId?: number
-    [key: string]: any
-  }
-  children?: IDataType[]
-}
+import { IMenuType } from '@/interface'
 
 // 模拟的菜单列表
-export const menuList = ref<IDataType[]>([
+export const menuList = ref<IMenuType[]>([
   {
     path: '/dashboard',
     component: 'Layout',

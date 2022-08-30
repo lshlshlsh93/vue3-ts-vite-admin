@@ -1,23 +1,27 @@
 <template>
   <!-- 侧边栏logo信息 -->
   <AsideLogo class="layout-logo" v-if="!isCollapse" />
-  <el-menu
-    :default-active="activeMenu"
-    unique-opened
-    background-color="#304156"
-    router
-    class="el-menu-vertical-demo"
-    :collapse="isCollapse"
-    @open="handleOpen"
-    @close="handleClose"
-  >
-    <MenuItem :menuList="menuList" />
-  </el-menu>
+  <el-scrollbar height="100">
+    <el-menu
+      :default-active="defaultActive"
+      unique-opened
+      background-color="transparent"
+      :collapse-transition="false"
+      router
+      mode="vertical"
+      class="el-menu-vertical-demo"
+      :collapse="isCollapse"
+      @open="handleOpen"
+      @close="handleClose"
+    >
+      <MenuItem :menuList="menuList" />
+    </el-menu>
+  </el-scrollbar>
 </template>
 <script setup lang="ts">
 import AsideLogo from '../AsideLogo/asideLogo.vue'
 import MenuItem from '../AsideItem/asideItem.vue'
-import { useApplication } from '../../../../../store'
+import { useApplication } from '@/store'
 import { RouteLocationNormalizedLoaded, useRoute } from 'vue-router'
 import { menuList } from './data'
 
@@ -25,7 +29,7 @@ const route: RouteLocationNormalizedLoaded = useRoute()
 const appStore = useApplication()
 
 // 当前激活的菜单
-const activeMenu = computed(() => {
+const defaultActive = computed(() => {
   const { path } = route
   return path
 })

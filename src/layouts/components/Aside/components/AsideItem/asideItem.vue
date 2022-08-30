@@ -6,9 +6,8 @@
       :key="item.path"
     >
       <template #title>
-        <el-icon>
-          <Edit /> <span>{{ item.meta.name }}</span>
-        </el-icon>
+        <el-icon> </el-icon>
+        <span>{{ item.meta.name }}</span>
       </template>
       <!-- 递归调用自己 -->
       <aside-item :menuList="item.children" />
@@ -21,8 +20,13 @@
   </template>
 </template>
 <script setup lang="ts">
-import { Edit } from '@element-plus/icons-vue'
-const props = defineProps(['menuList'])
+import { PropType } from 'vue'
+const props = defineProps({
+  menuList: {
+    type: Object as PropType<any>,
+    required: true,
+  },
+})
 </script>
 <style lang="scss" scoped>
 .menu-item {

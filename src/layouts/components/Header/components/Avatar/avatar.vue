@@ -1,41 +1,56 @@
 <template>
-  <el-dropdown>
-    <span class="el-dropdown-link">
+  <el-dropdown class="avatar-container" trigger="hover">
+    <div class="avatar-wrapper">
       <el-avatar
         id="avatar"
-        sharp="square"
-        :size="size"
-        :src="DEFALUT_AVATAR_IMAGE_URL"
+        sharp="circle"
+        :size="__DEFALUT_AVATAR_IMAGE_SIZE"
+        :src="__DEFALUT_AVATAR_IMAGE_URL"
       />
-    </span>
+      <span>xxx</span>
+      <el-icon class="el-icon--right"><ArrowDown /></el-icon>
+    </div>
     <template #dropdown>
-      <el-dropdown-menu>
-        <el-dropdown-item>
-          <router-link to="/dashboard">首页</router-link>
-        </el-dropdown-item>
+      <el-dropdown-menu class="user-dropdown">
+        <router-link to="/dashboard">
+          <el-dropdown-item>首页</el-dropdown-item>
+        </router-link>
         <el-dropdown-item>个人中心</el-dropdown-item>
-        <el-dropdown-item @click="handleLogout">退出</el-dropdown-item>
+        <el-dropdown-item divided @click="handleLogout">退出</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
 </template>
 <script setup lang="ts">
-import { DEFALUT_AVATAR_IMAGE_URL } from '../../../../../config'
-
+import {
+  __DEFALUT_AVATAR_IMAGE_URL,
+  __DEFALUT_AVATAR_IMAGE_SIZE,
+} from '@/config'
 import { useRouter } from 'vue-router'
-
 const router = useRouter()
-const size = ref<number>(40)
 const handleLogout = (): void => {
-  router.replace('/login')
+  // router.push({ path: '/login' })
+  // 刷新页面
+  location.reload()
 }
 </script>
 <style lang="scss" scoped>
-.el-dropdown-link {
-  cursor: pointer;
-  color: var(--el-color-primary);
+.avatar-container {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
+  height: 50px;
+  .avatar-wrapper {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    cursor: pointer;
+    padding: 0 8px;
+    color: var(--el-color-primary);
+    span {
+      margin-left: 6px;
+    }
+  }
 }
 :deep(.el-dropdown-item) {
   white-space: nowrap;

@@ -1,12 +1,12 @@
 <template>
   <div class="logo">
-    <img :src="PROJECT_LOGO_URL" alt="logo" />
-    <span v-show="isShowText">{{ PROJECT_TITLE }}</span>
+    <img :src="__PROJECT_LOGO_URL" alt="logo" />
+    <span v-show="isShowText">{{ __PROJECT_TITLE }}</span>
   </div>
 </template>
 <script setup lang="ts">
-import { PROJECT_TITLE, PROJECT_LOGO_URL } from '../../../../../config'
-import { useApplication } from '../../../../../store'
+import { __PROJECT_TITLE, __PROJECT_LOGO_URL } from '@/config'
+import { useApplication } from '@/store'
 
 const appStore = useApplication()
 
