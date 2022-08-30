@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 
 import '@/styles/scss/index.scss'
 import '@/assets/iconfont/iconfont'
+
 import 'element-plus/theme-chalk/src/message.scss'
 import 'element-plus/theme-chalk/src/message-box.scss'
 

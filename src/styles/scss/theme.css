@@ -1,0 +1,23 @@
+.sidebar-dark {
+  --theme-logo-text-color: #e7e3e3;
+  --theme-main-bg-color: #000;
+  --theme-menu-text-color: #ffff04;
+  --theme-menu-bg-color: #263238;
+  --theme-menu-hover-color: #eee;
+  --theme-menu-hover-bg-color: var(--el-color-primary);
+}
+
+.sidebar-dark .el-menu-item.is-active {
+  border-right: none;
+  right: 0;
+}
+
+.sidebar-dark.layout-sidebar {
+  border-right: none;
+}
+
+.header-theme {
+  --theme-header-bg-color: var(--el-color-primary);
+  --theme-header-text-color: #ffff03;
+  --theme-header-hover-color: rgba(0, 0, 0, 0.1);
+}
