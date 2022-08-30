@@ -21,7 +21,7 @@ import { ITheme } from '@/interface'
  * @method setTheme 设置主题
  * @method removeTheme 移除主题
  */
-class Cache {
+class SyStemCache {
   getToken = (): string => {
     return localCache.getCache(CacheKey._Token_Key) || ''
   }
@@ -32,7 +32,7 @@ class Cache {
   getSideBarOpened = (): boolean => {
     return localCache.getCache(CacheKey._Sidebar_Opened_Key) || false
   }
-  setSideBarOpened = (value: string): void => {
+  setSideBarOpened = (value: boolean): void => {
     localCache.setCache(CacheKey._Sidebar_Opened_Key, value)
   }
 
@@ -64,4 +64,4 @@ class Cache {
   }
 }
 
-export default new Cache()
+export const AppCache = new SyStemCache()

@@ -1,146 +1,376 @@
 <template>
-  <el-tabs
-    v-model="activeTab"
-    type="card"
-    @tab-click="handleTabClick"
-    closable
-    @tab-remove="removeTab(activeTab)"
-  >
-    <el-tab-pane
-      v-for="item in tabList"
-      :key="item.path"
-      :label="item.name"
-      :name="item.path"
-    />
-  </el-tabs>
+  <div class="tabs-container">
+    <div class="tabs-item">
+      <el-tabs
+        v-model="activeTabName"
+        :class="tabsStyleClass"
+        type="card"
+        @tab-click="handleTabClick"
+        closable
+        @tab-remove="handleTabRemove(activeTabName)"
+      >
+        <el-tab-pane
+          v-for="tab in tabStore.visitedViews"
+          :key="tab"
+          :label="tab.title"
+          :name="tab.path"
+          :closable="!isAffix(tab)"
+        />
+      </el-tabs>
+    </div>
+    <el-dropdown
+      class="tabs-action"
+      trigger="click"
+      placement="bottom-end"
+      @command="handleClose"
+    >
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item :icon="Close" command="close"
+            >关闭当前</el-dropdown-item
+          >
+          <el-dropdown-item :icon="CircleClose" command="closeOthers"
+            >关闭其他</el-dropdown-item
+          >
+          <el-dropdown-item :icon="CircleCloseFilled" command="closeAll"
+            >关闭所有</el-dropdown-item
+          >
+        </el-dropdown-menu>
+      </template>
+      <el-icon><arrow-down /></el-icon>
+    </el-dropdown>
+  </div>
 </template>
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, Router } from 'vue-router'
-import { ITab } from '../../../interface/common/tab'
-import { useApplication } from '../../../store'
+import { useApplication, useTab } from '@/store'
+import {
+  ArrowDown,
+  CircleClose,
+  CircleCloseFilled,
+  Close,
+} from '@element-plus/icons-vue'
+
+type ICommandType = 'close' | 'closeOthers' | 'closeAll'
 
 const appStore = useApplication()
+const tabStore = useTab()
+
 const route: RouteLocationNormalizedLoaded = useRoute()
 const router: Router = useRouter()
 
-const tabList = computed(() => {
-  return appStore.tabsList
-})
 // 当前激活的选项卡
-const activeTab = ref<string>('')
-// 设置当前激活的选项卡
-const setActiveTab = (): void => {
-  activeTab.value = route.path
-}
-// 添加选项卡
-const addTab = (): void => {
-  // 从当前路由获取path和title
-  const { path, meta } = route
+const activeTabName = ref<string>(route.path)
 
-  const tab: ITab = {
-    path: path,
-    name: meta.name as string,
-  }
-  appStore.setTabsList(tab)
+// 选项卡的样式
+const tabsStyleClass = computed(() => 'tabs-item-' + appStore.theme.tabsStyle)
+
+// 是否固定
+const isAffix = (tab: any): any => {
+  return tab.meta && tab.meta.affix
 }
-// 删除当前选项卡
-const removeTab = (targetName: string): void => {
-  // 首页不能删除
-  if (targetName === '/dashboard') {
-    ElMessage({
-      message: '首页不能删除',
-      type: 'warning',
-      duration: 1000,
-    })
-    return
-  }
-  // 选项卡数据列表
-  const tabs = tabList.value
-  // 当前激活的选项卡
-  let activeName = activeTab.value
-  if (activeName === targetName) {
-    tabs.forEach((tab: ITab, index: number) => {
-      if (tab.path === targetName) {
-        const nextTab = tabs[index + 1] || tabs[index - 1]
-        if (nextTab) {
-          activeName = nextTab.path
-        }
-      }
-    })
-  }
-  // 重新设置当前激活的选项卡
-  activeTab.value = activeName
-  // 重新设置选项卡数据
-  appStore.tabsList = tabs.filter((tab: ITab) => tab.path !== targetName)
-  // 重新跳转路由
-  router.push({ path: activeName })
-}
+
+onMounted(() => {
+  // 解决刷新选项卡数据丢失问题
+  beforeRefresh()
+  // 初始化选项卡
+  initTab()
+  // 添加选项卡
+  addTab()
+})
+
 // 监听路由发生变化时,设置选项卡
-watch(
-  () => route.path,
-  () => {
-    // 设置激活的选项卡
-    setActiveTab()
-    // 添加选项卡
+watch(route, () => {
+  // 当前路由，添加到tabs里
+  if (route.name) {
     addTab()
   }
-)
+})
+
+// 初始化tabs
+const initTab = (): void => {
+  //TODO
+  const routers: any[] = []
+
+  const affixTabs: any[] = getAffixTabs(routers)
+  for (const tab of affixTabs) {
+    // 需要有tab名称
+    if (tab.name) {
+      tabStore.addView(tab)
+    }
+  }
+}
+
+// 获取需要固定的tabs
+const getAffixTabs = (routes: any): any[] => {
+  let tabs: any[] = []
+  routes.forEach((route: any) => {
+    if (route.meta && route.meta.affix) {
+      tabs.push({
+        fullPath: route.path,
+        path: route.path,
+        name: route.name,
+        meta: {
+          ...route.meta,
+        },
+      })
+    }
+    if (route.children) {
+      const tmpTabs = getAffixTabs(route.children)
+      if (tmpTabs.length >= 1) {
+        tabs = [...tabs, ...tmpTabs]
+      }
+    }
+  })
+  return tabs
+}
+
+// 添加选项卡
+const addTab = (): void => {
+  tabStore.addView(route)
+  tabStore.addCacheView(route)
+  // 从当前路由获取path
+  const { path } = route
+  activeTabName.value = path
+}
+
+// 选项卡点击事件
+const handleTabClick = (tab: any): void => {
+  const { props } = tab
+  if (props.name) {
+    router.push(props.name)
+  }
+}
+// dropdown 关闭事件
+const handleClose = (type: ICommandType): void => {
+  switch (type) {
+    case 'close':
+      closeTab(router, route)
+      break
+    case 'closeOthers':
+      closeOthersTab(router, route)
+      break
+    case 'closeAll':
+      closeAllTab(router, route)
+      break
+  }
+}
+
+// 删除当前选项卡
+const handleTabRemove = (path: string): void => {
+  // // 首页不能删除
+  // if (targetName === '/dashboard') {
+  //   ElMessage({
+  //     message: '首页不能删除',
+  //     type: 'warning',
+  //     duration: 1000,
+  //   })
+  //   return
+  // }
+  // // 选项卡数据列表
+  // const tabs = tabList.value
+  // // 当前激活的选项卡
+  // let activeName = activeTabName.value
+  // if (activeName === targetName) {
+  //   tabs.forEach((tab: ITab, index: number) => {
+  //     if (tab.path === targetName) {
+  //       const nextTab = tabs[index + 1] || tabs[index - 1]
+  //       if (nextTab) {
+  //         activeName = nextTab.path
+  //       }
+  //     }
+  //   })
+  // }
+  // // 重新设置当前激活的选项卡
+  // activeTabName.value = activeName
+  // // 重新设置选项卡数据
+  // appStore.tabsList = tabs.filter((tab: ITab) => tab.path !== targetName)
+  // // 重新跳转路由
+  // router.push({ path: activeName })
+  const tab = tabStore.visitedViews.filter(
+    (tab: any) => tab.path === path
+  ) as any[]
+  closeTab(router, tab[0])
+}
+
 // 解决刷新数据丢失的问题
 const beforeRefresh = (): void => {
   window.addEventListener('beforeunload', () => {
-    sessionStorage.setItem('tabsView', JSON.stringify(tabList))
+    sessionStorage.setItem('tabsView', JSON.stringify(tabStore.visitedViews))
   })
   let tabSession = sessionStorage.getItem('tabsView')
   if (tabSession) {
     let oldTabs = JSON.parse(tabSession)
     if (oldTabs.length > 0) {
-      appStore.tabsList = oldTabs
+      tabStore.visitedViews = oldTabs
     }
   }
 }
-onMounted(() => {
-  // 解决刷新选项卡数据丢失问题
-  beforeRefresh()
-  // 设置激活的选项卡
-  setActiveTab()
-  // 添加选项卡
-  addTab()
-})
-// 选项卡点击事件
-const handleTabClick = (tab: any): void => {
-  const { props } = tab
-  // 路由跳转
-  router.push({ path: props.name })
+
+/**
+ * 关闭tab
+ * @param router
+ * @param tab
+ */
+const closeTab = (router: Router, tab: RouteLocationNormalizedLoaded): void => {
+  if (tab.meta && tab.meta.affix) {
+    return
+  }
+  tabStore.delView(tab)
+  toLastView(router, tabStore.visitedViews, tab)
+}
+
+/**
+ * 关闭其他tabs
+ * @param router
+ * @param tab
+ */
+const closeOthersTab = (
+  router: Router,
+  tab: RouteLocationNormalizedLoaded
+): void => {
+  router.push(tab)
+  tabStore.delOtherViews(tab)
+}
+
+/**
+ * 关闭全部 tab
+ * @param router
+ * @param tab
+ */
+const closeAllTab = (
+  router: Router,
+  tab: RouteLocationNormalizedLoaded
+): void => {
+  tabStore.delAllViews()
+  toLastView(router, tabStore.visitedViews, tab)
+}
+
+/**
+ * 跳转到最后一个tab
+ * @param router
+ * @param visitedViews
+ * @param view
+ */
+const toLastView = (
+  router: Router,
+  visitedViews: any[],
+  view: RouteLocationNormalizedLoaded
+): void => {
+  const lastView = visitedViews.slice(-1)[0]
+  if (lastView) {
+    router.push(lastView.fullPath)
+  } else {
+    if (view.name === 'dashboard') {
+      router.replace({ path: '/redirect' + view.fullPath })
+    } else {
+      router.push('/')
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
-:deep(.el-tabs__header) {
-  margin: 0;
+.tabs-container {
+  display: flex;
+  position: relative;
+  z-index: 6;
+  height: 40px;
+  .tabs-item {
+    transition: left 0.3s;
+    flex-grow: 1;
+    overflow: hidden;
+    ::v-deep(.el-tabs__nav-prev) {
+      padding: 0 10px;
+      border-right: var(--el-border-color-extra-light) 1px solid;
+    }
+    ::v-deep(.el-tabs__nav-next) {
+      padding: 0 10px;
+      border-left: var(--el-border-color-extra-light) 1px solid;
+    }
+    ::v-deep(.is-scrollable) {
+      padding: 0 32px;
+    }
+    ::v-deep(.el-tabs__active-bar) {
+      height: 0;
+    }
+    ::v-deep(.el-tabs__item) {
+      .is-icon-close {
+        transition: none !important;
+        &:hover {
+          color: var(--el-color-primary-light-9);
+          background-color: var(--el-color-primary);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
 }
-:deep(.el-tabs__item) {
-  height: 26px !important;
-  line-height: 26px !important ;
-  text-align: center !important;
-  border: 1px solid #d8dce5 !important;
-  margin: 0 3px !important;
-  color: #495060;
-  font-size: 12px !important;
-  padding: 0 10px !important;
+
+.tabs-item-style-1 {
+  ::v-deep(.el-tabs__item) {
+    padding: 0 15px !important;
+    border-right: var(--el-border-color-extra-light) 1px solid;
+    user-select: none;
+    color: #8c8c8c;
+    &:hover {
+      color: #444;
+      background: rgba(0, 0, 0, 0.02);
+    }
+    &.is-active {
+      color: var(--el-color-primary);
+      background-color: var(--el-color-primary-light-9);
+      border-bottom: var(--el-border-color-light) 2px solid;
+      &::before {
+        background-color: var(--el-color-primary);
+      }
+    }
+    &::before {
+      content: '';
+      width: 9px;
+      height: 9px;
+      margin-right: 8px;
+      display: inline-block;
+      background-color: #ddd;
+      border-radius: 50%;
+    }
+  }
 }
-:deep(.el-tabs__item:hover) {
-  color: #495060 !important;
+
+.tabs-item-style-2 {
+  ::v-deep(.el-tabs__item) {
+    padding: 0 15px !important;
+    border-right: none;
+    user-select: none;
+    color: #8c8c8c;
+    display: inline-block;
+
+    &:hover {
+      color: #444;
+      background: rgba(0, 0, 0, 0.02);
+      border-bottom: var(--el-color-primary) 2px solid;
+    }
+
+    &.is-active {
+      color: var(--el-color-primary) !important;
+      background-color: var(--el-color-primary-light-9) !important;
+      border-bottom: var(--el-color-primary) 2px solid;
+      &::before {
+        background-color: var(--el-color-primary);
+      }
+    }
+  }
 }
-:deep(.el-tabs__nav) {
-  border: none !important;
-}
-:deep(.is-active) {
-  border-bottom: 1px solid transparent !important;
-  border: 1px solid #42b983 !important;
-  background-color: #42b983 !important;
-  color: #fff !important;
-}
-:deep(.is-active:hover) {
-  color: #fff !important;
+
+.tabs-action {
+  height: 40px;
+  line-height: 40px;
+  box-sizing: border-box;
+  padding: 0 12px;
+  align-items: center;
+  cursor: pointer;
+  color: #666;
+  border-left: var(--el-border-color-extra-light) 1px solid;
+  border-bottom: var(--el-border-color-light) 2px solid;
 }
 </style>
