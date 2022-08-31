@@ -7,52 +7,22 @@
       <Refresh />
       <!-- 面包屑 -->
       <Breadcrumb v-if="appStore.theme.isBreadcrumb" />
-      <el-tooltip content="guide" effect="light" placement="bottom">
-        <span>
-          <!-- <Driver /> -->
-        </span>
-      </el-tooltip>
     </div>
     <div class="navbar-right">
-      <div class="navbar-item">
-        <el-tooltip content="website" effect="light" placement="bottom">
-          <a href="https://baidu.com" target="_blank">
-            <svg-icon icon="icon-earth" />
-          </a>
-        </el-tooltip>
-      </div>
-      <div class="navbar-item">
-        <el-tooltip content="Github" effect="light" placement="bottom">
-          <span>
-            <a
-              href="https://github.com/lshlshlsh93/fast-element-admin"
-              target="_blank"
-            >
-              <svg-icon icon="icon-github-fill" /> </a
-          ></span>
-        </el-tooltip>
-
-        <el-tooltip content="Gitee" effect="light" placement="bottom">
-          <span>
-            <a
-              href="https://gitee.com/lshlsh666/fast-element-admin"
-              target="_blank"
-            >
-              <svg-icon icon="icon-gitee-fill-round" /> </a
-          ></span>
-        </el-tooltip>
-        <el-tooltip content="Fullscreen" effect="light" placement="bottom">
-          <span><FullScreen /></span>
-        </el-tooltip>
-        <el-tooltip content="Notice" effect="light" placement="bottom">
-          <span><Notice /></span>
-        </el-tooltip>
-        <span><ComponentSize /></span>
-      </div>
-      <!-- 头像 -->
-      <div class="navbar-item">
-        <Avatar />
-      </div>
+      <Driver />
+      <a
+        href="https://github.com/lshlshlsh93/fast-element-admin"
+        target="_blank"
+      >
+        <svg-icon icon="icon-github-fill" />
+      </a>
+      <a href="https://gitee.com/lshlsh666/fast-element-admin" target="_blank">
+        <svg-icon icon="icon-gitee-fill-round" />
+      </a>
+      <FullScreen />
+      <Notice />
+      <ComponentSize />
+      <Avatar />
     </div>
   </div>
 </template>

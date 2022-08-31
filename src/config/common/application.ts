@@ -8,7 +8,7 @@ export const __PROJECT_TITLE: string = 'Vue3-TS-Admin'
 /**
  * 项目侧边栏名字
  */
-export const __PROJECT_MINI_TITLE: string = 'Vue3-Admin'
+export const __PROJECT_MINI_TITLE: string = 'Admin'
 
 /**
  * LOGO--URL

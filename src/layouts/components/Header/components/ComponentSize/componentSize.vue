@@ -27,10 +27,7 @@ const componentSize = computed(() => {
 })
 const handleComponentSizeChange = (size: string) => {
   appStore.setComponentSize(size)
-  ElMessage.success({
-    message: `change the component size to ${size} success`,
-    duration: 2000,
-  })
+  location.reload()
 }
 </script>
 <style lang="scss" scoped></style>

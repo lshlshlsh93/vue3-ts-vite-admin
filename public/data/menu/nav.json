@@ -47,6 +47,22 @@
       ]
     },
     {
+      "id": 5,
+      "name": "界面",
+      "url": null,
+      "openStyle": 0,
+      "icon": "icon-heart-fill",
+      "children": [
+        {
+          "id": 51,
+          "name": "Icon图标",
+          "url": "icons/icon",
+          "openStyle": 0,
+          "icon": "icon-meh"
+        }
+      ]
+    },
+    {
       "id": 10,
       "name": "多级菜单",
       "url": null,

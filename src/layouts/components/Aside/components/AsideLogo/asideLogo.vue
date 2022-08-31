@@ -1,24 +1,25 @@
 <template>
   <div class="sidebar-logo" v-if="appStore.sidebarOpened">
-    <img :src="__PROJECT_LOGO_URL" />
-    <span class="logo-title">{{ __PROJECT_TITLE }}</span>
+    <svg-icon class="icon" icon="icon-vue" />
+    <span class="title">{{ __PROJECT_TITLE }}</span>
   </div>
   <div v-else class="sidebar-logo sidebar-logo-expend">
-    <span>{{ __PROJECT_MINI_TITLE }}</span>
+    <svg-icon icon="icon-vue" />
   </div>
 </template>
 <script setup lang="ts">
 import {
-  __PROJECT_TITLE,
-  __PROJECT_LOGO_URL,
-  __PROJECT_MINI_TITLE,
+  __PROJECT_TITLE
 } from '@/config'
 import { useApplication } from '@/store'
 const appStore = useApplication()
 </script>
 <style lang="scss" scoped>
 .sidebar-logo {
-  margin-top: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 8px;
   width: var(--theme-aside-width) !important;
   height: var(--theme-header-height);
   line-height: var(--theme-header-height);
@@ -28,12 +29,14 @@ const appStore = useApplication()
   box-shadow: rgb(0 21 41 / 2%) 0 1px 4px;
   color: var(--theme-logo-text-color);
   font-size: 18px;
-  img {
+  .icon {
     width: 25px;
     height: 25px;
   }
-  .logo-title {
-    margin-left: 10px;
+  .title {
+    font-size: 16px;
+    font-weight: 400;
+    color: darkslategray;
   }
 }
 .sidebar-logo-expend {
