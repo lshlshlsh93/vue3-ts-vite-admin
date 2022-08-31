@@ -1,10 +1,10 @@
 <template>
   <div class="dashboard-container">
     <div class="card-container">
-      <!-- <Card />
+      <Card />
       <Sale />
-      <Observe /> -->
-      <Introduce />
+      <Observe />
+      <!-- <Introduce /> -->
     </div>
   </div>
 </template>

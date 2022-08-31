@@ -15,7 +15,7 @@ export const detailProps: IDetailProp[] = [
     count: 12656,
     content: {
       weekPercentage: 56.67,
-      dayPercentage: 19.96,
+      dayPercentage: 19.99,
     },
     daySaltAmount: 12423,
   },

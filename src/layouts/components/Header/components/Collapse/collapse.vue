@@ -7,15 +7,15 @@
 </template>
 <script setup lang="ts">
 import { Fold, Expand } from '@element-plus/icons-vue'
-import { ComputedRef } from 'vue'
-import { useApplication } from '../../../../../store'
+import { useApplication } from '@/store'
+
 const appStore = useApplication()
 
-const status: ComputedRef<boolean> = computed(() => {
-  return appStore.opened
+const status = computed(() => {
+  return appStore.isSidebarOpened
 })
 const handleClickColllapse: () => void = () => {
-  appStore.setCollapse()
+  appStore.setSidebarOpened()
 }
 </script>
 <style lang="scss" scoped>

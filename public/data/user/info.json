@@ -1,0 +1,11 @@
+{
+  "code": 0,
+  "msg": "success",
+  "data": {
+    "id": 666,
+    "username": "admin",
+    "email": "lsh@163.com",
+    "isAdmin": true,
+    "avatar": "https://cdn.maku.net/images/avatar.png"
+  }
+}

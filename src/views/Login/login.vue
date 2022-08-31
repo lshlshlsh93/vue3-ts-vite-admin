@@ -6,24 +6,25 @@
         <img src="../../assets/images/others/logo.png" alt="" />
       </div>
       <!-- 登录表单区域 -->
-      <el-form
-        class="login-form"
-        label-width="0"
-        ref="loginFormRef"
-        :rules="loginFormRules"
-        :model-value="loginForm"
-      >
+      <div class="login-wrapper">
+        <!-- <el-form
+          class="login-form"
+          label-width="0"
+          ref="loginFormRef"
+          :rules="loginFormRules"
+          :model-value="loginForm"
+          @keyup.enter="handleLogin"
+        > -->
+        <div class="login-title">登录</div>
         <el-form-item prop="username">
           <el-input
             placeholder="请输入用户名"
-            autofocus
             :prefix-icon="UserFilled"
             v-model="loginForm.username"
           />
         </el-form-item>
         <el-form-item prop="password">
           <el-input
-            type="password"
             v-model="loginForm.password"
             show-password
             :prefix-icon="Lock"
@@ -31,14 +32,11 @@
           />
         </el-form-item>
         <el-form-item class="form-btn">
-          <el-button type="primary" @click="handleLogin(loginFormRef)"
-            >登录
-          </el-button>
-          <el-button type="danger" @click="handleReset(loginFormRef)"
-            >重置
-          </el-button>
+          <el-button type="primary" @click="handleLogin">登录 </el-button>
+          <el-button type="danger" @click="handleReset">重置 </el-button>
         </el-form-item>
-      </el-form>
+        <!-- </el-form> -->
+      </div>
     </div>
   </div>
 </template>
@@ -46,19 +44,16 @@
 import { FormInstance, FormRules } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { Lock, UserFilled } from '@element-plus/icons-vue'
-// 表单类型
-interface ILogin {
-  username: string
-  password: string
-}
+import { useUser } from '@/store'
 
+const userStore = useUser()
 const router = useRouter()
 
 // 表单属性
-const loginFormRef = ref<FormInstance>()
-const loginForm = ref<ILogin>({
-  username: '',
-  password: '',
+const loginFormRef: any = ref(null)
+const loginForm = ref<{ username: string; password: string }>({
+  username: 'admin',
+  password: 'admin',
 })
 // 表单验证规则
 const loginFormRules = ref<FormRules>({
@@ -67,22 +62,23 @@ const loginFormRules = ref<FormRules>({
 })
 
 // 用户登录
-const handleLogin = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.validate((valid) => {
-    if (valid) {
-      ElMessage.success('登录成功')
-      router.push({ path: '/dashboard' })
-    } else {
-      console.log('error submit!')
-      return false
-    }
+const handleLogin = () => {
+  // loginFormRef.value.validate((valid: boolean) => {
+  //   if (!valid) {
+  //     console.error('error submit!')
+  //     return false
+  //   }
+
+  // 用户登录
+  userStore.loginAction(loginForm).then((response) => {
+    console.log(response)
+    router.push({ path: '/dashboard' })
   })
+  // })
 }
 // 重置表单
-const handleReset = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.resetFields()
+const handleReset = () => {
+  loginFormRef.resetFields()
 }
 </script>
 <style lang="scss" scoped>
@@ -113,7 +109,7 @@ const handleReset = (formEl: FormInstance | undefined) => {
         width: 100%;
         height: 100%;
         border-radius: 50%;
-        background-color: #eee;
+        background-color: eee;
       }
     }
 

@@ -5,31 +5,51 @@
         id="avatar"
         sharp="circle"
         :size="__DEFALUT_AVATAR_IMAGE_SIZE"
-        :src="__DEFALUT_AVATAR_IMAGE_URL"
+        :src="avatarUrl"
       />
-      <span>xxx</span>
-      <el-icon class="el-icon--right"><ArrowDown /></el-icon>
+      <span>{{ userStore.curUserName }}</span>
+      <el-icon class="el-icon--right">
+        <ArrowDown />
+      </el-icon>
     </div>
     <template #dropdown>
       <el-dropdown-menu class="user-dropdown">
         <router-link to="/dashboard">
           <el-dropdown-item>首页</el-dropdown-item>
         </router-link>
-        <el-dropdown-item>个人中心</el-dropdown-item>
+        <el-dropdown-item divided>个人中心</el-dropdown-item>
+        <el-dropdown-item>
+          <span>
+            <Dark />
+          </span>
+        </el-dropdown-item>
         <el-dropdown-item divided @click="handleLogout">退出</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
 </template>
 <script setup lang="ts">
+import { ArrowDown } from '@element-plus/icons-vue'
 import {
   __DEFALUT_AVATAR_IMAGE_URL,
   __DEFALUT_AVATAR_IMAGE_SIZE,
 } from '@/config'
+import Dark from './dark.vue'
+import { useUser } from '@/store'
 import { useRouter } from 'vue-router'
+
+const userStore = useUser()
 const router = useRouter()
+
+// 头像地址
+const avatarUrl = computed(() => {
+  return userStore.curUserAvatar
+    ? userStore.curUserAvatar
+    : __DEFALUT_AVATAR_IMAGE_URL
+})
+
 const handleLogout = (): void => {
-  // router.push({ path: '/login' })
+  router.push({ path: '/login' })
   // 刷新页面
   location.reload()
 }

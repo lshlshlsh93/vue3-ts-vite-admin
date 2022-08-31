@@ -10,7 +10,7 @@
         @tab-remove="handleTabRemove(activeTabName)"
       >
         <el-tab-pane
-          v-for="tab in tabStore.visitedViews"
+          v-for="tab in tabStore.curVisitedViews"
           :key="tab"
           :label="tab.title"
           :name="tab.path"
@@ -43,8 +43,12 @@
 </template>
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import type { RouteLocationNormalizedLoaded, Router } from 'vue-router'
-import { useApplication, useTab } from '@/store'
+import type {
+  RouteRecordRaw,
+  RouteLocationNormalizedLoaded,
+  Router,
+} from 'vue-router'
+import { useApplication, useTab, useRouterStore } from '@/store'
 import {
   ArrowDown,
   CircleClose,
@@ -52,19 +56,19 @@ import {
   Close,
 } from '@element-plus/icons-vue'
 
-type ICommandType = 'close' | 'closeOthers' | 'closeAll'
-
 const appStore = useApplication()
 const tabStore = useTab()
-
-const route: RouteLocationNormalizedLoaded = useRoute()
-const router: Router = useRouter()
+const routerStore = useRouterStore()
+const route = useRoute()
+const router = useRouter()
 
 // 当前激活的选项卡
 const activeTabName = ref<string>(route.path)
 
 // 选项卡的样式
-const tabsStyleClass = computed(() => 'tabs-item-' + appStore.theme.tabsStyle)
+const tabsStyleClass = computed(
+  () => 'tabs-item-' + appStore.curTheme.tabsStyle
+)
 
 // 是否固定
 const isAffix = (tab: any): any => {
@@ -90,9 +94,7 @@ watch(route, () => {
 
 // 初始化tabs
 const initTab = (): void => {
-  //TODO
-  const routers: any[] = []
-
+  const routers: RouteRecordRaw[] = routerStore.curRoutes
   const affixTabs: any[] = getAffixTabs(routers)
   for (const tab of affixTabs) {
     // 需要有tab名称
@@ -103,9 +105,9 @@ const initTab = (): void => {
 }
 
 // 获取需要固定的tabs
-const getAffixTabs = (routes: any): any[] => {
+const getAffixTabs = (routes: RouteRecordRaw[]): any[] => {
   let tabs: any[] = []
-  routes.forEach((route: any) => {
+  routes.forEach((route: RouteRecordRaw) => {
     if (route.meta && route.meta.affix) {
       tabs.push({
         fullPath: route.path,
@@ -142,6 +144,7 @@ const handleTabClick = (tab: any): void => {
     router.push(props.name)
   }
 }
+type ICommandType = 'close' | 'closeOthers' | 'closeAll'
 // dropdown 关闭事件
 const handleClose = (type: ICommandType): void => {
   switch (type) {
@@ -159,45 +162,16 @@ const handleClose = (type: ICommandType): void => {
 
 // 删除当前选项卡
 const handleTabRemove = (path: string): void => {
-  // // 首页不能删除
-  // if (targetName === '/dashboard') {
-  //   ElMessage({
-  //     message: '首页不能删除',
-  //     type: 'warning',
-  //     duration: 1000,
-  //   })
-  //   return
-  // }
-  // // 选项卡数据列表
-  // const tabs = tabList.value
-  // // 当前激活的选项卡
-  // let activeName = activeTabName.value
-  // if (activeName === targetName) {
-  //   tabs.forEach((tab: ITab, index: number) => {
-  //     if (tab.path === targetName) {
-  //       const nextTab = tabs[index + 1] || tabs[index - 1]
-  //       if (nextTab) {
-  //         activeName = nextTab.path
-  //       }
-  //     }
-  //   })
-  // }
-  // // 重新设置当前激活的选项卡
-  // activeTabName.value = activeName
-  // // 重新设置选项卡数据
-  // appStore.tabsList = tabs.filter((tab: ITab) => tab.path !== targetName)
-  // // 重新跳转路由
-  // router.push({ path: activeName })
-  const tab = tabStore.visitedViews.filter(
+  let tab: any = tabStore.curVisitedViews.filter(
     (tab: any) => tab.path === path
-  ) as any[]
+  )
   closeTab(router, tab[0])
 }
 
 // 解决刷新数据丢失的问题
 const beforeRefresh = (): void => {
   window.addEventListener('beforeunload', () => {
-    sessionStorage.setItem('tabsView', JSON.stringify(tabStore.visitedViews))
+    sessionStorage.setItem('tabsView', JSON.stringify(tabStore.curVisitedViews))
   })
   let tabSession = sessionStorage.getItem('tabsView')
   if (tabSession) {
@@ -218,7 +192,7 @@ const closeTab = (router: Router, tab: RouteLocationNormalizedLoaded): void => {
     return
   }
   tabStore.delView(tab)
-  toLastView(router, tabStore.visitedViews, tab)
+  toLastView(router, tabStore.curVisitedViews, tab)
 }
 
 /**
@@ -244,7 +218,7 @@ const closeAllTab = (
   tab: RouteLocationNormalizedLoaded
 ): void => {
   tabStore.delAllViews()
-  toLastView(router, tabStore.visitedViews, tab)
+  toLastView(router, tabStore.curVisitedViews, tab)
 }
 
 /**

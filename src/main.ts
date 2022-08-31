@@ -1,7 +1,12 @@
 import { createApp } from 'vue'
 
+import 'virtual:svg-icons-register'
+
 import '@/styles/scss/index.scss'
 import '@/assets/iconfont/iconfont'
+
+// 暗黑模式
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 import 'element-plus/theme-chalk/src/message.scss'
 import 'element-plus/theme-chalk/src/message-box.scss'

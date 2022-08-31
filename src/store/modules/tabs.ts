@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { RouteLocationNormalizedLoaded } from 'vue-router'
 
 export const tabStore = defineStore({
-  id: 'tabStore',
+  id: 'app-tab',
   state: () => ({
     visitedViews: [] as any[], // 访问过
     cachedViews: [] as any[], // 已经缓存
@@ -65,12 +65,13 @@ export const tabStore = defineStore({
      * @param view
      */
     delOtherViews(view: RouteLocationNormalizedLoaded): void {
-      this.visitedViews = this.visitedViews.filter((v) => {
+      const cache = this.visitedViews
+      this.visitedViews = cache.filter((v) => {
         return v.meta.affix || v.path === view.path
       })
-      const index = this.cachedViews.indexOf(view.name)
+      const index = cache.indexOf(view.name)
       if (index > -1) {
-        this.cachedViews = this.cachedViews.slice(index, index + 1)
+        this.cachedViews = cache.slice(index, index + 1)
       } else {
         this.cachedViews = []
       }
@@ -81,6 +82,14 @@ export const tabStore = defineStore({
     delAllViews(): void {
       this.visitedViews = this.visitedViews.filter((tab) => tab.meta.affix)
       this.cachedViews = []
+    },
+  },
+  getters: {
+    curVisitedViews(): any[] {
+      return this.visitedViews
+    },
+    curCachedViews(): any[] {
+      return this.cachedViews
     },
   },
 })

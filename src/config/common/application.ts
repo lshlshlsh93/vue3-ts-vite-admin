@@ -3,7 +3,12 @@
 /**
  * 项目侧边栏名字
  */
-export const __PROJECT_TITLE: string = 'Vue3-ts-admin'
+export const __PROJECT_TITLE: string = 'Vue3-TS-Admin'
+
+/**
+ * 项目侧边栏名字
+ */
+export const __PROJECT_MINI_TITLE: string = 'Vue3-Admin'
 
 /**
  * LOGO--URL
@@ -19,6 +24,7 @@ export const __DEFALUT_AVATAR_IMAGE_URL: string =
 
 /**
  * 默认头像大小
+ * @defaultValue 30px
  */
 export const __DEFALUT_AVATAR_IMAGE_SIZE: number = 30
 
@@ -26,3 +32,26 @@ export const __DEFALUT_AVATAR_IMAGE_SIZE: number = 30
  * 底部信息
  */
 export const __FOOTER_MESSAGE: string = '@copyright lsh 2022-2023'
+
+/**
+ * 默认localStorage 过期时间--5*60*1000--5分钟
+ * @defaultValue 5分钟
+ */
+export const __DEFAULT_LOCALSTORAGE_EXPIRE_TIME: number = 5 * 60 * 1000
+
+/**
+ * 主页默认路由
+ * @defaultValue /dashboard
+ */
+export const __DEFAULT_DASHBOARD_URL: string = '/dashboard'
+
+/**
+ * 登录默认路由
+ * @defaultValue /login
+ */
+export const __DEFAULT_ROUTER_LOGIN_URL: string = '/login'
+
+/**
+ * 系统默认字体大小
+ */
+export const __SYSTEM_DEFAULT_FONT_SIZE: number = 12

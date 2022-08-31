@@ -1,3 +1,5 @@
+import { __DEFAULT_LOCALSTORAGE_EXPIRE_TIME } from '@/config'
+
 /**
  * 使用localStorage进行封装缓存，添加有效期的选项
  */
@@ -13,13 +15,13 @@ class LocalCache {
     }
     const now = new Date().getTime()
     if (now >= value.time) {
-      window.localStorage.removeItem(key)
+      this.removeCache(key)
       return null
     }
     return value.data as T
   }
 
-  setCache(key: string, value: unknown, expireTime = 0) {
+  setCache(key: string, value: unknown, expireTime: number = 0) {
     const obj = {
       data: value,
       time: expireTime ? new Date().getTime() + expireTime : 0,

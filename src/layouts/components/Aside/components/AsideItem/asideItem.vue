@@ -1,35 +1,29 @@
 <template>
-  <template v-for="item in props.menuList" :key="item.path">
-    <el-sub-menu
-      v-if="item.children && item > 0"
-      :index="item.path"
-      :key="item.path"
-    >
-      <template #title>
-        <el-icon> </el-icon>
-        <span>{{ item.meta.name }}</span>
-      </template>
-      <!-- 递归调用自己 -->
-      <aside-item :menuList="item.children" />
-    </el-sub-menu>
-    <el-menu-item class="menu-item" v-else :index="item.path">
-      <template #title>
-        {{ item.meta.name }}
-      </template>
-    </el-menu-item>
-  </template>
+  <el-sub-menu
+    v-if="menu.children.length > 0"
+    :index="menu.path"
+    :key="menu.path"
+  >
+    <template #title>
+      <svg-icon :icon="menu.meta.icon"></svg-icon>
+      <span>{{ menu.meta.title }}</span>
+    </template>
+    <!-- 递归调用自己 -->
+    <aside-item v-for="sub in menu.children" :key="sub.path" :menu="sub" />
+  </el-sub-menu>
+  <el-menu-item class="menu-item" v-else :index="menu.path">
+    <svg-icon :icon="menu.meta.icon"></svg-icon>
+    <template #title>
+      {{ menu.meta.title }}
+    </template>
+  </el-menu-item>
 </template>
 <script setup lang="ts">
 import { PropType } from 'vue'
-const props = defineProps({
-  menuList: {
+defineProps({
+  menu: {
     type: Object as PropType<any>,
     required: true,
   },
 })
 </script>
-<style lang="scss" scoped>
-.menu-item {
-  color: #f4f5f6;
-}
-</style>

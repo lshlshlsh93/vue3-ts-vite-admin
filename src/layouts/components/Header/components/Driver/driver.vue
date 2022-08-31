@@ -1,10 +1,8 @@
 <template>
   <div id="guide" @click.prevent.stop="handleClickGuide">
-    <el-tooltip content="guide" effect="light" placement="bottom-end">
-      <el-icon>
-        <Promotion />
-      </el-icon>
-    </el-tooltip>
+    <el-icon>
+      <Promotion />
+    </el-icon>
   </div>
 </template>
 <script setup lang="ts">
@@ -27,7 +25,7 @@ onMounted(() => {
     prevBtnText: 'Previous',
   })
 })
-const handleClickGuide = () => {
+const handleClickGuide = (): void => {
   driver.defineSteps(StepProps)
   driver.start()
 }

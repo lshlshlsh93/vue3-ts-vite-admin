@@ -1,10 +1,8 @@
 <template>
   <el-container class="layout-container">
     <!-- 侧边栏开始 -->
-    <el-aside width="auto" class="aside-container">
-      <!-- 菜单栏 -->
-      <Aside />
-    </el-aside>
+    <!-- 菜单栏 -->
+    <Aside />
     <!-- 侧边栏结束 -->
     <el-container>
       <!-- 头部开始 -->
@@ -44,10 +42,12 @@ import Footer from './components/Footer/footer.vue'
 import Header from './components/Header/header.vue'
 import Aside from './components/Aside/aside.vue'
 import Tabs from './components/Tabs/tabs.vue'
-
+import { RouterView } from 'vue-router'
 import { useApplication, useTab } from '@/store'
+
 const appStore = useApplication()
 const tabStore = useTab()
+
 // 当前主题
 const curTheme = computed(() => appStore.theme)
 
@@ -69,22 +69,4 @@ const layoutMainHeight = computed(() => {
   }
 })
 </script>
-<style lang="scss" scoped>
-/*.layout-container {
-  height: 100%;
-  .aside-container {
-    // #304156
-    background-color: rgb(48, 65, 86);
-  }
-  .header-container {
-    height: 50px;
-    border-bottom: 1px solid #e5e5e5;
-    display: flex;
-    align-items: center;
-  }
-  .main-container {
-    margin-top: 0;
-  }
-}
-*/
-</style>
+<style lang="scss" scoped></style>

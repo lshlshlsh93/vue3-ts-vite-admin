@@ -11,7 +11,7 @@
               <span
                 >周同比&nbsp;&nbsp;{{ detailProps[0].content?.weekPercentage }}%
               </span>
-              >&nbsp;&nbsp;
+              &nbsp;&nbsp;
               <span
                 >日同比&nbsp;&nbsp;{{ detailProps[0].content?.dayPercentage }}%
               </span>
@@ -88,7 +88,7 @@
 </template>
 <script setup lang="ts">
 import Detail from './detail.vue'
-import { ECOption } from '../../../../interface'
+import { ECOption } from '@/interface'
 import { detailProps } from './cardData'
 
 // 折线图配置项

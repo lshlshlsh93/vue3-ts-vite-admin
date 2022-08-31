@@ -89,3 +89,7 @@
 .el-card.is-always-shadow {
   box-shadow: none !important;
 }
+
+.el-dropdown-menu__item {
+  font-size: var(--el-font-size-small) !important;
+}
