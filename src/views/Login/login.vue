@@ -5,43 +5,41 @@
       <div class="avatar-box">
         <img src="../../assets/images/others/logo.png" alt="" />
       </div>
+      <div class="login-title">登录</div>
       <!-- 登录表单区域 -->
-      <div class="login-wrapper">
-        <!-- <el-form
-          class="login-form"
-          label-width="0"
-          ref="loginFormRef"
-          :rules="loginFormRules"
-          :model-value="loginForm"
-          @keyup.enter="handleLogin"
-        > -->
-        <div class="login-title">登录</div>
-        <el-form-item prop="username">
-          <el-input
-            placeholder="请输入用户名"
-            :prefix-icon="UserFilled"
-            v-model="loginForm.username"
-          />
-        </el-form-item>
-        <el-form-item prop="password">
-          <el-input
-            v-model="loginForm.password"
-            show-password
-            :prefix-icon="Lock"
-            placeholder="请输入密码"
-          />
-        </el-form-item>
-        <el-form-item class="form-btn">
-          <el-button type="primary" @click="handleLogin">登录 </el-button>
-          <el-button type="danger" @click="handleReset">重置 </el-button>
-        </el-form-item>
-        <!-- </el-form> -->
-      </div>
+      <!-- <el-form
+        class="login-form"
+        ref="loginFormRef"
+        label-width="120px"
+        :rules="loginFormRules"
+        v-model="loginForm"
+        @keyup.enter="handleLogin"
+      > -->
+      <el-form-item prop="username" class="form-item">
+        <el-input
+          placeholder="请输入用户名"
+          :prefix-icon="UserFilled"
+          v-model="loginForm.username"
+        />
+      </el-form-item>
+      <el-form-item prop="password">
+        <el-input
+          v-model="loginForm.password"
+          show-password
+          :prefix-icon="Lock"
+          placeholder="请输入密码"
+        />
+      </el-form-item>
+      <el-form-item class="form-btn">
+        <el-button type="primary" @click="handleLogin">登录 </el-button>
+        <el-button type="danger" @click="handleReset">重置 </el-button>
+      </el-form-item>
+      <!-- </el-form> -->
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { FormInstance, FormRules } from 'element-plus'
+import { FormRules } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { Lock, UserFilled } from '@element-plus/icons-vue'
 import { useUser } from '@/store'
@@ -64,15 +62,16 @@ const loginFormRules = ref<FormRules>({
 // 用户登录
 const handleLogin = () => {
   // loginFormRef.value.validate((valid: boolean) => {
-  //   if (!valid) {
-  //     console.error('error submit!')
-  //     return false
-  //   }
+  // if (!valid) {
+  //   console.error('error submit!')
+  //   return false
+  // }
 
   // 用户登录
   userStore.loginAction(loginForm).then((response) => {
-    console.log(response)
-    router.push({ path: '/dashboard' })
+    router.push({
+      path: '/',
+    })
   })
   // })
 }
@@ -84,7 +83,8 @@ const handleReset = () => {
 <style lang="scss" scoped>
 .login-container {
   height: 100%;
-  background-color: #2b4b6b;
+  width: 100%;
+  background-color: rgb(98, 43, 226); // #2b4b6b
   .login-box {
     width: 450px;
     height: 300px;
@@ -112,14 +112,24 @@ const handleReset = () => {
         background-color: eee;
       }
     }
-
-    .login-form {
+    .login-title {
       position: absolute;
+      left: 45%;
+      top: 30%;
+      color: var(--el-color-primary);
+    }
+    .login-form {
+      // position: absolute;
       bottom: 0;
       width: 100%;
       height: 100%;
+      background-color: #ffffff;
       padding: 0 20px;
       box-sizing: border-box;
+
+      .form-item {
+        min-height: 150px;
+      }
       .form-btn {
         float: right;
       }

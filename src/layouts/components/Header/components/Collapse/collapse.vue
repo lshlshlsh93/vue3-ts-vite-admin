@@ -1,12 +1,17 @@
 <template>
   <div id="collapse" class="collapse">
-    <el-icon @click="handleClickColllapse" class="icon">
+    <!-- <el-icon>
       <component :is="status ? Expand : Fold" />
-    </el-icon>
+    </el-icon> -->
+    <span v-if="status" class="icon" @click="handleClickColllapse">
+      <svg-icon icon="icon-menu-1-expand" />
+    </span>
+    <span v-else class="icon" @click="handleClickColllapse">
+      <svg-icon icon="icon-menu-1-express" />
+    </span>
   </div>
 </template>
 <script setup lang="ts">
-import { Fold, Expand } from '@element-plus/icons-vue'
 import { useApplication } from '@/store'
 
 const appStore = useApplication()
@@ -23,9 +28,7 @@ const handleClickColllapse: () => void = () => {
   .icon {
     display: flex;
     align-items: center;
-    font-size: 20px;
     cursor: pointer;
-    margin-right: 15px;
   }
 }
 </style>

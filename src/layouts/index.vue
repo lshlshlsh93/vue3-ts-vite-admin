@@ -7,9 +7,10 @@
     <el-container>
       <!-- 头部开始 -->
       <el-header class="layout-header" :style="layoutHeaderHeight">
-        <Header />
         <!-- 当前激活 tab 面板 -->
         <Tabs v-if="curTheme.isTabsView" />
+        <!-- 头部信息 -->
+        <Header />
       </el-header>
       <!-- 头部结束 -->
       <el-scrollbar>

@@ -1,16 +1,14 @@
 <template>
-  <div class="sidebar-logo" v-if="appStore.sidebarOpened">
+  <div class="sidebar-logo" v-if="appStore.isSidebarOpened">
     <svg-icon class="icon" icon="icon-vue" />
     <span class="title">{{ __PROJECT_TITLE }}</span>
   </div>
   <div v-else class="sidebar-logo sidebar-logo-expend">
-    <svg-icon icon="icon-vue" />
+    <svg-icon class="icon" icon="icon-vue" />
   </div>
 </template>
 <script setup lang="ts">
-import {
-  __PROJECT_TITLE
-} from '@/config'
+import { __PROJECT_TITLE } from '@/config'
 import { useApplication } from '@/store'
 const appStore = useApplication()
 </script>
@@ -32,11 +30,13 @@ const appStore = useApplication()
   .icon {
     width: 25px;
     height: 25px;
+    margin-right: 8px;
   }
   .title {
-    font-size: 16px;
-    font-weight: 400;
-    color: darkslategray;
+    font-size: 15px;
+    font-weight: 500;
+    align-items: center;
+    color: var(--el-color-primary);
   }
 }
 .sidebar-logo-expend {

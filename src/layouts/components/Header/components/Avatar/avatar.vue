@@ -17,12 +17,10 @@
         <router-link to="/dashboard">
           <el-dropdown-item>首页</el-dropdown-item>
         </router-link>
-        <el-dropdown-item divided>个人中心</el-dropdown-item>
-        <el-dropdown-item>
-          <span>
-            <Dark />
-          </span>
-        </el-dropdown-item>
+        <router-link to="/profile">
+          <el-dropdown-item divided>个人中心</el-dropdown-item>
+        </router-link>
+
         <el-dropdown-item divided @click="handleLogout">退出</el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -34,7 +32,6 @@ import {
   __DEFALUT_AVATAR_IMAGE_URL,
   __DEFALUT_AVATAR_IMAGE_SIZE,
 } from '@/config'
-import Dark from './dark.vue'
 import { useUser } from '@/store'
 import { useRouter } from 'vue-router'
 
@@ -49,9 +46,10 @@ const avatarUrl = computed(() => {
 })
 
 const handleLogout = (): void => {
-  router.push({ path: '/login' })
-  // 刷新页面
-  location.reload()
+  userStore.logoutAction()
+  router.push({
+    path: '/login',
+  })
 }
 </script>
 <style lang="scss" scoped>

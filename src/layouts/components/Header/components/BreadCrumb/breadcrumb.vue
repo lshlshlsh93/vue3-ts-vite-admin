@@ -1,9 +1,5 @@
 <template>
-  <el-breadcrumb
-    separator="/"
-    :separator-icon="ArrowRight"
-    class="navbar-breadcrumb"
-  >
+  <el-breadcrumb separator="⚡" class="navbar-breadcrumb">
     <el-breadcrumb-item key="dashboard"> 首页 </el-breadcrumb-item>
     <el-breadcrumb-item v-for="(item, index) in breadcrumb" :key="index">
       <span>{{ item }}</span>

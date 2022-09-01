@@ -39,6 +39,8 @@ export const userStore = defineStore({
       await useLogoutApi()
       // 移除 token
       this.setToken('')
+      // 刷新页面
+      location.reload()
     },
   },
   getters: {

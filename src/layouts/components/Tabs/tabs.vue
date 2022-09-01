@@ -55,6 +55,7 @@ import {
   CircleCloseFilled,
   Close,
 } from '@element-plus/icons-vue'
+import { __DEFAULT_DASHBOARD_URL } from '@/config';
 
 const appStore = useApplication()
 const tabStore = useTab()
@@ -83,7 +84,6 @@ onMounted(() => {
   // 添加选项卡
   addTab()
 })
-
 // 监听路由发生变化时,设置选项卡
 watch(route, () => {
   // 当前路由，添加到tabs里

@@ -15,7 +15,7 @@
     "dayjs": "^1.11.5",
     "driver.js": "^0.9.8",
     "echarts": "^5.3.3",
-    "element-plus": "^2.2.13",
+    "element-plus": "^2.2.15",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.18",
     "qs": "^6.11.0",

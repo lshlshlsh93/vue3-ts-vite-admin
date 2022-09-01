@@ -45,11 +45,11 @@ const asyncRoutes: RouteRecordRaw = {
       },
     },
     {
-      path: '/profile/password',
-      name: 'ProfilePassword',
-      component: () => import('@/views/Profile/password.vue'),
+      path: '/profile',
+      name: 'Profile',
+      component: () => import('@/views/Profile/profile.vue'),
       meta: {
-        title: '密码',
+        title: '个人中心',
         cache: true,
       },
     },
@@ -119,7 +119,7 @@ router.beforeEach(
       if (whiteList.indexOf(to.path) > -1) {
         next()
       } else {
-        next(__DEFAULT_ROUTER_LOGIN_URL)
+        next({ path: __DEFAULT_ROUTER_LOGIN_URL })
       }
     }
   }

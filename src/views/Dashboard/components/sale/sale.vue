@@ -4,15 +4,15 @@
     <div class="clearfix">
       <!-- 左侧内容 -->
       <el-tabs class="tabs" v-model="activeName">
-        <el-tab-pane label="销售额" name="sale" />
-        <el-tab-pane label="访问量" name="visit" />
+        <el-tab-pane class="hv-class" label="销售额" name="sale" />
+        <el-tab-pane class="hv-class" label="访问量" name="visit" />
       </el-tabs>
       <!-- 右侧内容 -->
       <div class="right">
-        <span @click="handleSetDay">今日</span>
-        <span @click="handleSetWeek">本周</span>
-        <span @click="handleSetMonth">本月</span>
-        <span @click="handleSetYear">本年</span>
+        <span class="hv-class" @click="handleSetDay">今日</span>
+        <span class="hv-class" @click="handleSetWeek">本周</span>
+        <span class="hv-class" @click="handleSetMonth">本月</span>
+        <span class="hv-class" @click="handleSetYear">本年</span>
         <el-date-picker
           :clearable="false"
           :model-Value="date"
@@ -33,14 +33,20 @@
           <BaseChart class="charts" :options="barChartOptions" />
         </el-col>
         <el-col :span="6" class="col-right">
-          <h3>门店{{ activeTitle }}排名</h3>
+          <h3 class="hv-class">门店{{ activeTitle }}排名</h3>
           <ul>
             <li v-for="(item, index) in saleDataList" :key="index">
-              <span :class="item.index <= 3 ? 'r-index' : ''">{{
+              <span :class="item.index <= 4 ? 'r-index' : 'r-other-index'">{{
                 item.index
               }}</span>
-              <span class="r-medium">{{ item.name }}</span>
-              <span class="r-value">{{ item.count }}</span>
+              <span
+                class="hv-class"
+                :class="
+                  item.index <= 4 ? ' r-other-name r-medium-1' : 'r-medium-2'
+                "
+                >{{ item.name }}</span
+              >
+              <span class="r-value hv-class">{{ item.count }}</span>
             </li>
           </ul>
         </el-col>
@@ -49,7 +55,7 @@
   </el-card>
 </template>
 <script setup lang="ts">
-import { ECOption } from '../../../../interface'
+import { ECOption } from '@/interface'
 import { saleDataList } from './data'
 import dayjs from 'dayjs'
 
@@ -160,9 +166,12 @@ watchEffect(() => {
   right: 0;
   span {
     margin: 0 10px;
-    &:hover {
-      cursor: pointer;
-    }
+  }
+}
+.hv-class {
+  &:hover {
+    cursor: pointer;
+    color: var(--el-color-primary);
   }
 }
 .charts {
@@ -190,13 +199,22 @@ ul {
   float: left;
   width: 20px;
   height: 20px;
-  border-radius: 50%;
+  border-radius: 10%;
   background: black;
   color: white;
   text-align: center;
 }
-.r-medium {
+.r-other-index {
+  margin-left: 5px;
+}
+.r-other-name {
+  margin-left: 45px;
+}
+.r-medium-1 {
   margin-left: 75px;
+}
+.r-medium-2 {
+  margin-left: 82px;
 }
 .r-value {
   float: right;

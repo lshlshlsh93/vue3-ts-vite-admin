@@ -3,13 +3,14 @@
     <div class="navbar-left">
       <!-- 折叠 -->
       <Collapse class="collapse" />
-      <!-- 刷新 -->
-      <Refresh />
       <!-- 面包屑 -->
       <Breadcrumb v-if="appStore.theme.isBreadcrumb" />
     </div>
     <div class="navbar-right">
+      <!-- 指导 -->
       <Driver />
+      <!-- 刷新 -->
+      <Refresh />
       <a
         href="https://github.com/lshlshlsh93/fast-element-admin"
         target="_blank"
@@ -20,9 +21,12 @@
         <svg-icon icon="icon-gitee-fill-round" />
       </a>
       <FullScreen />
+      <Search />
       <Notice />
       <ComponentSize />
+      <Dark />
       <Avatar />
+      <Setting />
     </div>
   </div>
 </template>
@@ -36,6 +40,9 @@ import Refresh from './components/Refresh/refresh.vue'
 import FullScreen from './components/Fullscreen/fullScreen.vue'
 import Notice from './components/Notice/notice.vue'
 import ComponentSize from './components/ComponentSize/componentSize.vue'
+import Setting from '../Setting/setting.vue'
+import Search from './components/Search/search.vue'
+import Dark from './components/Theme/dark.vue'
 const appStore = useApplication()
 const headerClass = computed(() =>
   appStore.theme.headerStyle === 'theme' ? 'header-theme' : ''
@@ -69,7 +76,7 @@ const headerClass = computed(() =>
     display: flex;
     align-items: center;
     .collapse {
-      margin-left: 18px;
+      margin-left: 0;
     }
   }
   .navbar-right {

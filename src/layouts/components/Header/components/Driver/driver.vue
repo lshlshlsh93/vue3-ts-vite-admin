@@ -1,9 +1,6 @@
 <template>
   <div id="guide" @click.prevent.stop="handleClickGuide">
-    <el-icon>
-      <!-- <Promotion /> -->
-      <svg-icon icon="icon-send"/>
-    </el-icon>
+    <svg-icon icon="icon-guide-icon" />
   </div>
 </template>
 <script setup lang="ts">

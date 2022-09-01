@@ -13,11 +13,15 @@ import AsideMenu from './components/AsideMenu/asideMenu.vue'
 const appStore = useApplication()
 
 const sidebarClass = computed(() => {
-  const sidebarOpened = appStore.sidebarOpened
+  // 侧边栏状态
+  const sidebarOpened = appStore.isSidebarOpened
     ? 'aside-expend'
     : 'aside-compress'
-  const isDark = appStore.theme.sidebarStyle === 'dark' ? 'sidebar-dark' : ''
-  return sidebarOpened + ' ' + isDark
+  // 是否是暗色
+  const isDark = computed(() => {
+    return appStore.theme.sidebarStyle === 'dark' ? 'sidebar-dark' : ''
+  })
+  return sidebarOpened + ' ' + isDark.value
 })
 </script>
 <style lang="scss" scoped></style>

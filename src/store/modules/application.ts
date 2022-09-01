@@ -5,13 +5,13 @@ export const appStore = defineStore({
   id: 'app-application',
   state: () => ({
     // 侧边栏是否展开
-    sidebarOpened: AppCache.getSideBarOpened() as boolean,
+    sidebarOpened: AppCache.getSideBarOpened(),
     // 组件大小
-    componentSize: AppCache.getComponentSize() as string,
+    componentSize: AppCache.getComponentSize(),
     // 主题
-    theme: AppCache.getTheme() as ITheme,
+    theme: AppCache.getTheme(),
     // 设备类型
-    device: 'desktop' as string,
+    device: 'desktop',
   }),
   actions: {
     setSidebarOpened(): void {

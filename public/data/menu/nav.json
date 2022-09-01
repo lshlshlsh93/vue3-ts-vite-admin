@@ -28,21 +28,21 @@
           "name": "部门管理",
           "url": "org/index",
           "openStyle": 0,
-          "icon": "icon-cluster"
+          "icon": "icon-part"
         },
         {
           "id": 14,
           "name": "角色管理",
           "url": "role/index",
           "openStyle": 0,
-          "icon": "icon-team"
+          "icon": "icon-role-1"
         },
         {
           "id": 15,
           "name": "岗位管理",
           "url": "post/index",
           "openStyle": 0,
-          "icon": "icon-addteam"
+          "icon": "icon-post"
         }
       ]
     },
@@ -58,7 +58,7 @@
           "name": "Icon图标",
           "url": "icons/icon",
           "openStyle": 0,
-          "icon": "icon-meh"
+          "icon": "icon-m-icon"
         }
       ]
     },
@@ -67,7 +67,7 @@
       "name": "多级菜单",
       "url": null,
       "openStyle": 0,
-      "icon": "icon-unorderedlist",
+      "icon": "icon-component",
       "children": [
         {
           "id": 101,

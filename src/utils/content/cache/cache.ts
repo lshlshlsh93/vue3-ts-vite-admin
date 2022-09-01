@@ -1,5 +1,5 @@
 import { localCache, sessionCache } from '../storage'
-import { CacheKey, themeConfig } from '@/config'
+import { CacheKey, __df_t } from '@/config'
 import { ITheme } from '@/interface'
 
 /**
@@ -52,7 +52,7 @@ class SyStemCache {
   }
 
   getTheme = (): ITheme => {
-    return (sessionCache.getCache(CacheKey._Theme_Key) as ITheme) || themeConfig
+    return (sessionCache.getCache(CacheKey._Theme_Key) as ITheme) || __df_t
   }
 
   setTheme = (value: ITheme): void => {

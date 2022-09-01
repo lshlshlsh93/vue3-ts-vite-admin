@@ -1,8 +1,8 @@
 export interface ITheme {
   /** 侧栏风格 [light、dark] */
-  sidebarStyle: sidebarStyle
+  sidebarStyle: sidebarStyle | string
   /** 顶栏风格 [light、theme] */
-  headerStyle: headerStyle
+  headerStyle: headerStyle | string
   /** 主题颜色 */
   primaryColor: string
   /** 侧栏排他展开(只保持一个子菜单展开) */
@@ -16,7 +16,7 @@ export interface ITheme {
   /** 开启标签页缓存 */
   isTabsCache: boolean
   /** 标签页风格 [style-1、style-2] */
-  tabsStyle: tabsStyle
+  tabsStyle: tabsStyle | string
 }
 type sidebarStyle = 'light' | 'dark'
 type headerStyle = 'light' | 'theme'
