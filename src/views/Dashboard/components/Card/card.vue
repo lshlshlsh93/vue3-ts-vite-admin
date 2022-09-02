@@ -9,17 +9,23 @@
           >
             <template #charts>
               <span
-                >周同比&nbsp;&nbsp;{{ detailProps[0].content?.weekPercentage }}%
+                >{{ $t('_dashboard.cart_chart.week_increase') }}&nbsp;&nbsp;{{
+                  detailProps[0].content?.weekPercentage
+                }}%
               </span>
               &nbsp;&nbsp;
               <span
-                >日同比&nbsp;&nbsp;{{ detailProps[0].content?.dayPercentage }}%
+                >{{ t('_dashboard.cart_chart.day_increase') }}&nbsp;&nbsp;{{
+                  detailProps[0].content?.dayPercentage
+                }}%
               </span>
               &nbsp;&nbsp;
             </template>
             <template #footer>
               <span
-                >日销售额&nbsp;&nbsp;￥{{ detailProps[0].daySaltAmount }}</span
+                >{{
+                  t('_dashboard.cart_chart.day_sale_amount')
+                }}&nbsp;&nbsp;￥{{ detailProps[0].daySaltAmount }}</span
               >
             </template>
           </Detail>
@@ -36,7 +42,9 @@
             </template>
             <template #footer>
               <span
-                >日访问量&nbsp;&nbsp;{{ detailProps[1].dayMeetAmount }}</span
+                >{{ t('_dashboard.cart_chart.day_visit_amount') }}&nbsp;&nbsp;{{
+                  detailProps[1].dayMeetAmount
+                }}</span
               >
             </template>
           </Detail>
@@ -53,7 +61,11 @@
               <BaseChart :options="barChartOption" />
             </template>
             <template #footer>
-              <span>转化率&nbsp;&nbsp;{{ detailProps[2].transformRate }}%</span>
+              <span>
+                {{
+                  t('_dashboard.cart_chart.percent_conversion')
+                }}&nbsp;&nbsp;{{ detailProps[2].transformRate }}%</span
+              >
             </template>
           </Detail>
         </el-card>
@@ -69,15 +81,14 @@
               <BaseChart :options="progressChartOption" />
             </template>
             <template #footer>
-              <span
-                >周同比&nbsp;&nbsp;{{
+              <span>
+                {{ t('_dashboard.cart_chart.week_increase') }}&nbsp;&nbsp;{{
                   detailProps[3].content?.weekPercentage
                 }}%</span
               >&nbsp;&nbsp;
-              <span
-                >日同比&nbsp;&nbsp;{{
-                  detailProps[3].content?.dayPercentage
-                }}%</span
+              <span>
+                {{ t('_dashboard.cart_chart.day_increase') }}
+                &nbsp;&nbsp;{{ detailProps[3].content?.dayPercentage }}%</span
               >
             </template>
           </Detail>
@@ -89,7 +100,50 @@
 <script setup lang="ts">
 import Detail from './detail.vue'
 import { ECOption } from '@/interface'
-import { detailProps } from './cardData'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+interface IDetailProp {
+  title: string
+  count: number
+  content?: {
+    weekPercentage?: number
+    dayPercentage?: number
+  }
+  daySaltAmount?: number
+  dayMeetAmount?: number
+  transformRate?: number
+}
+const detailProps: IDetailProp[] = [
+  {
+    title: t('_dashboard.cart_chart.total_sales'),
+    count: 12656,
+    content: {
+      weekPercentage: 56.67,
+      dayPercentage: 19.99,
+    },
+    daySaltAmount: 12423,
+  },
+  {
+    title: t('_dashboard.cart_chart.visit_amount'),
+    count: 88460,
+    dayMeetAmount: 6666,
+  },
+  {
+    title: t('_dashboard.cart_chart.payment_amount'),
+    count: 88460,
+    transformRate: 65,
+  },
+  {
+    title: t('_dashboard.cart_chart.option_activity_effect'),
+    count: 78,
+    content: {
+      weekPercentage: 12,
+      dayPercentage: 11,
+    },
+  },
+]
 
 // 折线图配置项
 let lineChartOption = ref<ECOption>({})

@@ -26,15 +26,15 @@
     >
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item :icon="Close" command="close"
-            >关闭当前</el-dropdown-item
-          >
-          <el-dropdown-item :icon="CircleClose" command="closeOthers"
-            >关闭其他</el-dropdown-item
-          >
-          <el-dropdown-item :icon="CircleCloseFilled" command="closeAll"
-            >关闭所有</el-dropdown-item
-          >
+          <el-dropdown-item :icon="Close" command="close">
+            {{ $t('_app._close') }}
+          </el-dropdown-item>
+          <el-dropdown-item :icon="CircleClose" command="closeOthers">{{
+            $t('_app._close_Oth')
+          }}</el-dropdown-item>
+          <el-dropdown-item :icon="CircleCloseFilled" command="closeAll">
+            {{ $t('_app._close_All') }}
+          </el-dropdown-item>
         </el-dropdown-menu>
       </template>
       <el-icon><arrow-down /></el-icon>
@@ -43,6 +43,8 @@
 </template>
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
 import type {
   RouteRecordRaw,
   RouteLocationNormalizedLoaded,
@@ -55,7 +57,9 @@ import {
   CircleCloseFilled,
   Close,
 } from '@element-plus/icons-vue'
-import { __DEFAULT_DASHBOARD_URL } from '@/config';
+import { __DEFAULT_DASHBOARD_URL } from '@/config'
+
+const { t } = useI18n()
 
 const appStore = useApplication()
 const tabStore = useTab()

@@ -4,15 +4,31 @@
     <div class="clearfix">
       <!-- 左侧内容 -->
       <el-tabs class="tabs" v-model="activeName">
-        <el-tab-pane class="hv-class" label="销售额" name="sale" />
-        <el-tab-pane class="hv-class" label="访问量" name="visit" />
+        <el-tab-pane
+          class="hv-class"
+          :label="$t('_dashboard.cart_chart.sale_amount')"
+          name="sale"
+        />
+        <el-tab-pane
+          class="hv-class"
+          :label="$t('_dashboard.cart_chart.visit_amount')"
+          name="visit"
+        />
       </el-tabs>
       <!-- 右侧内容 -->
       <div class="right">
-        <span class="hv-class" @click="handleSetDay">今日</span>
-        <span class="hv-class" @click="handleSetWeek">本周</span>
-        <span class="hv-class" @click="handleSetMonth">本月</span>
-        <span class="hv-class" @click="handleSetYear">本年</span>
+        <span class="hv-class" @click="handleSetDay">{{
+          $t('_datepicker.today')
+        }}</span>
+        <span class="hv-class" @click="handleSetWeek">{{
+          $t('_datepicker.week')
+        }}</span>
+        <span class="hv-class" @click="handleSetMonth">{{
+          $t('_datepicker.month')
+        }}</span>
+        <span class="hv-class" @click="handleSetYear">{{
+          $t('_datepicker.year')
+        }}</span>
         <el-date-picker
           :clearable="false"
           :model-Value="date"
@@ -21,8 +37,8 @@
           placeholder=""
           type="daterange"
           range-separator="—"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期"
+          :start-placeholder="$t('_datepicker.startDate')"
+          :end-placeholder="$t('_datepicker.endDate')"
           :size="size"
         ></el-date-picker>
       </div>
@@ -33,7 +49,10 @@
           <BaseChart class="charts" :options="barChartOptions" />
         </el-col>
         <el-col :span="6" class="col-right">
-          <h3 class="hv-class">门店{{ activeTitle }}排名</h3>
+          <h3 class="hv-class">
+            {{ t('_dashboard.cart_chart.store') }}
+            {{ activeTitle }}{{ t('_dashboard.cart_chart.ranking') }}
+          </h3>
           <ul>
             <li v-for="(item, index) in saleDataList" :key="index">
               <span :class="item.index <= 4 ? 'r-index' : 'r-other-index'">{{
@@ -56,8 +75,49 @@
 </template>
 <script setup lang="ts">
 import { ECOption } from '@/interface'
-import { saleDataList } from './data'
+import { IDataType } from './data'
 import dayjs from 'dayjs'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+const saleDataList: IDataType[] = [
+  {
+    index: 1,
+    name: t('_dashboard.food_ranking.KFC'),
+    count: '323,234',
+  },
+  {
+    index: 2,
+    name: t('_dashboard.food_ranking.Mcdonald'),
+    count: '299,132',
+  },
+  {
+    index: 3,
+    name: t('_dashboard.food_ranking.Milky_Tea'),
+    count: '283,998',
+  },
+  {
+    index: 4,
+    name: t('_dashboard.food_ranking.h_d_l'),
+    count: '266,323',
+  },
+  {
+    index: 5,
+    name: t('_dashboard.food_ranking.tk_yr'),
+    count: '223,445',
+  },
+  {
+    index: 6,
+    name: t('_dashboard.food_ranking.m_r'),
+    count: '219,663',
+  },
+  {
+    index: 7,
+    name: t('_dashboard.food_ranking.f_c'),
+    count: '200,997',
+  },
+]
 
 // 日期选择器的大小
 const size = ref<'' | 'large' | 'small'>('small')
@@ -66,7 +126,9 @@ const size = ref<'' | 'large' | 'small'>('small')
 const activeName = ref<string>('sale')
 // 当前选中的tab标题
 const activeTitle = computed(() => {
-  return activeName.value === 'sale' ? '销售额' : '访问量'
+  return activeName.value === 'sale'
+    ? t('_dashboard.cart_chart.sale_amount') + ' '
+    : t('_dashboard.cart_chart.visit_amount') + ' '
 })
 // 选取的日期
 //@ts-ignore
@@ -103,23 +165,23 @@ watchEffect(() => {
   barChartOptions.value = {
     title: {
       // 响应式修改标题
-      text: activeTitle.value + '趋势',
+      text: activeTitle.value + ' ' + t('_dashboard.cart_chart.tendency'),
     },
     xAxis: {
       type: 'category',
       data: [
-        '一月',
-        '二月',
-        '三月',
-        '四月',
-        '五月',
-        '六月',
-        '七月',
-        '八月',
-        '九月',
-        '十月',
-        '十一月',
-        '十二月',
+        t('_datepicker.months.jan'),
+        t('_datepicker.months.feb'),
+        t('_datepicker.months.mar'),
+        t('_datepicker.months.apr'),
+        t('_datepicker.months.may'),
+        t('_datepicker.months.jul'),
+        t('_datepicker.months.jun'),
+        t('_datepicker.months.aug'),
+        t('_datepicker.months.sep'),
+        t('_datepicker.months.oct'),
+        t('_datepicker.months.nov'),
+        t('_datepicker.months.dec'),
       ],
       axisTick: {
         alignWithLabel: true,
@@ -180,7 +242,7 @@ watchEffect(() => {
 }
 .date {
   width: 200px;
-  margin: 0 20px;
+  margin-top: 10px;
 }
 .col-right {
   padding: 0 0;

@@ -12,6 +12,8 @@ export const appStore = defineStore({
     theme: AppCache.getTheme(),
     // 设备类型
     device: 'desktop',
+    // 国际化
+    language: AppCache.getLanguage(),
   }),
   actions: {
     setSidebarOpened(): void {
@@ -26,6 +28,10 @@ export const appStore = defineStore({
       this.theme = theme
       AppCache.setTheme(theme)
     },
+    setLanguage(locale: string) {
+      this.language = locale
+      AppCache.setLanguage(locale)
+    },
   },
   getters: {
     isSidebarOpened(): boolean {
@@ -39,6 +45,9 @@ export const appStore = defineStore({
     },
     curDevice(): string {
       return this.device
+    },
+    curLang(): string {
+      return this.language
     },
   },
 })

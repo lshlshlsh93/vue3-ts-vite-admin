@@ -4,14 +4,16 @@
     <el-switch
       :model-value="modelValue"
       :disabled="props.disabled"
-      active-text="Y"
-      inactive-text="N"
+      :active-text="t('_bool_setting.true')"
+      :inactive-text="t('_bool_setting.false')"
       inline-prompt
       @change="handleChange($event)"
     ></el-switch>
   </div>
 </template>
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 const props = defineProps({
   modelValue: {
     type: Boolean,

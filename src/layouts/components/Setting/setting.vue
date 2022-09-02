@@ -3,7 +3,7 @@
     <svg-icon icon="icon-setting" @click="isVisible = true" />
     <el-drawer
       v-model="isVisible"
-      :title="' 布局设置'"
+      :title="t('_theme_setting.layout_settings')"
       :destroy-on-close="true"
       :size="280"
     >
@@ -14,7 +14,7 @@
             <el-tooltip
               key="dark"
               effect="dark"
-              :content="'浅色侧边栏'"
+              :content="t('_theme_setting.dark_sidebar')"
               placement="top"
             >
               <div
@@ -27,7 +27,7 @@
             <el-tooltip
               key="dark"
               effect="dark"
-              :content="'亮色侧边栏'"
+              :content="t('_theme_setting.light_sidebar')"
               placement="top"
             >
               <div
@@ -42,7 +42,7 @@
             <el-tooltip
               key="light"
               effect="dark"
-              :content="'亮色顶栏'"
+              :content="t('_theme_setting.light_navbar')"
               placement="top"
             >
               <div
@@ -55,7 +55,7 @@
             <el-tooltip
               key="auto"
               effect="dark"
-              :content="'主题色顶栏'"
+              :content="t('_theme_setting.theme_navbar')"
               placement="top"
             >
               <div
@@ -78,38 +78,43 @@
           </el-space>
         </el-space>
 
-        <el-divider content-position="left">界面设置</el-divider>
+        <el-divider content-position="left">{{
+          $t('_theme_setting.interface_settings')
+        }}</el-divider>
 
-        <switch-item v-model="isDark" :title="'开启暗黑模式'" />
+        <switch-item
+          v-model="isDark"
+          :title="t('_theme_setting.enable_dark')"
+        />
         <switch-item
           v-model="d_t.uniqueOpened"
-          :title="'侧栏排他展开'"
+          :title="t('_theme_setting.unique_opened')"
           @change="handleSetOtherTheme()"
         />
         <switch-item
           v-model="d_t.isLogo"
-          :title="'开启LOGO'"
+          :title="t('_theme_setting.enable_logo')"
           @change="handleSetOtherTheme"
         />
         <switch-item
           v-model="d_t.isBreadcrumb"
-          :title="'开启面包屑'"
+          :title="t('_theme_setting.unique_opened')"
           @change="handleSetOtherTheme"
         />
         <switch-item
           v-model="d_t.isTabsView"
-          :title="'开启标签页'"
+          :title="t('_theme_setting.enable_tabs')"
           @change="handleSetOtherTheme"
         />
         <switch-item
           v-model="d_t.isTabsCache"
-          :title="'开启标签页缓存'"
+          :title="t('_theme_setting.enable_tabs_cache')"
           @change="handleSetOtherTheme"
         />
 
         <SelectItem
           v-model="d_t.tabsStyle"
-          :title="'标签页风格'"
+          :title="t('_theme_setting.tabs_style')"
           :options="tabsStyle"
           @change="handleSetOtherTheme"
         />
@@ -118,7 +123,7 @@
         <el-space direction="vertical">
           <el-alert
             type="warning"
-            title="'设置之后仅是临时生效，要想永久生效，需点击下方的 复制配置s 按钮，将配置替换到 store/theme/config.ts 中。'"
+            :title="t('_theme_setting.tips')"
             :closable="false"
           ></el-alert>
           <div class="config-btn">
@@ -127,7 +132,7 @@
               size="small"
               :icon="CopyDocument"
               @click="handleCopyConfig"
-              >复制配置</el-button
+              >{{ $t('_theme_setting.copy_config') }}</el-button
             >
             <el-button
               type="info"
@@ -135,7 +140,7 @@
               :icon="RefreshRight"
               @click="handleResetConfig"
             >
-              恢复默认
+              {{ $t('_theme_setting.restore') }}
             </el-button>
           </div>
         </el-space>
@@ -151,7 +156,9 @@ import SelectItem from './components/selectItem/selectItem.vue'
 import { useClipboard, useDark, useToggle } from '@vueuse/core'
 import { AppCache } from '@/utils'
 import { handleThemeStyle } from '@/hooks'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const appStore = useApplication()
 const { copy } = useClipboard()
 
@@ -171,8 +178,8 @@ const colors: string[] = [
   '#FF4C52',
 ]
 const tabsStyle = [
-  { label: '样式一', value: 'style-1' },
-  { label: '样式二', value: 'style-2' },
+  { label: t('_theme_setting.style_1'), value: 'style-1' },
+  { label: t('_theme_setting.style_2'), value: 'style-2' },
 ]
 
 // 默认主题
@@ -217,7 +224,7 @@ const isVisible = ref(false)
 const handleCopyConfig = (): void => {
   const config: string = JSON.stringify(d_t.value, null, 2)
   copy(config)
-  ElMessage.success('复制配置成功')
+  ElMessage.success(t('_theme_setting.copy_success'))
 }
 // 处理恢复默认
 const handleResetConfig = async () => {

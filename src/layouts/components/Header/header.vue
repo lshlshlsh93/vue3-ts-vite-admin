@@ -24,6 +24,7 @@
       <Search />
       <Notice />
       <ComponentSize />
+      <Language />
       <Dark />
       <Avatar />
       <Setting />
@@ -43,6 +44,7 @@ import ComponentSize from './components/ComponentSize/componentSize.vue'
 import Setting from '../Setting/setting.vue'
 import Search from './components/Search/search.vue'
 import Dark from './components/Theme/dark.vue'
+import Language from '@/components/content/lang/lang.vue'
 const appStore = useApplication()
 const headerClass = computed(() =>
   appStore.theme.headerStyle === 'theme' ? 'header-theme' : ''

@@ -3,7 +3,12 @@ import { handleThemeStyle } from './hooks'
 import { __PROJECT_TITLE } from './config'
 import { useTitle } from '@vueuse/core'
 import { useApplication } from '@/store'
+import { useI18n } from 'vue-i18n'
+import { messages } from '@/i18n'
 const appStore = useApplication()
+const { t } = useI18n()
+const size: any = computed(() => appStore.componentSize)
+const locale = computed(() => messages[appStore.language].el)
 // 设置项目标题
 useTitle(__PROJECT_TITLE)
 onMounted(() => {
@@ -14,6 +19,8 @@ onMounted(() => {
 })
 </script>
 <template>
-  <router-view />
+  <el-config-provider :size="size" :locale="locale">
+    <router-view />
+  </el-config-provider>
 </template>
 <style lang="scss" scoped></style>
