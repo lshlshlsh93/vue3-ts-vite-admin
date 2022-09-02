@@ -1,4 +1,5 @@
 <script lang="ts">
+import { ElMessage } from 'element-plus'
 import { useRoute, useRouter } from 'vue-router'
 export default defineComponent({
   created() {

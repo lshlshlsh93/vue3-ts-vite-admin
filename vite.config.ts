@@ -13,8 +13,8 @@ const pathSrc = path.resolve(__dirname, './src')
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/vue3-ts-vite-admin/' : '/',
   server: {
-    base: command === 'build' ? '/vue3-ts-vite-admin/' : '/',
     host: '0.0.0.0',
     port: 3000,
     open: true,
@@ -31,9 +31,9 @@ export default defineConfig(({ command }) => ({
     rollupOptions: {
       // 打包后文件进行分包
       output: {
-        chunkFileNames: 'static/js/[name]-[hash].js',
-        entryFileNames: 'static/js/[name]-[hash].js',
-        assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+        // chunkFileNames: 'static/js/[name]-[hash].js',
+        // entryFileNames: 'static/js/[name]-[hash].js',
+        // assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
         manualChunks(id) {
           // 对于依赖包进行切割打包
           if (id.includes('node_modules')) {

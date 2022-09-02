@@ -33,6 +33,8 @@
   </el-popover>
 </template>
 <script setup lang="ts">
+import { ElMessage } from 'element-plus'
+
 interface INoticeType {
   label: string
   content: string

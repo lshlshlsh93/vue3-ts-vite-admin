@@ -36,7 +36,7 @@ import {
   useRoute,
   useRouter,
 } from 'vue-router'
-import type { FormInstance } from 'element-plus'
+import { ElMessage, FormInstance } from 'element-plus'
 import { useTab, useUser, useApplication } from '@/store'
 const appStore = useApplication()
 const tabStore = useTab()

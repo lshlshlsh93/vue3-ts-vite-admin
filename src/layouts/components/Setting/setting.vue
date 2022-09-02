@@ -157,6 +157,7 @@ import { useClipboard, useDark, useToggle } from '@vueuse/core'
 import { AppCache } from '@/utils'
 import { handleThemeStyle } from '@/hooks'
 import { useI18n } from 'vue-i18n'
+import { ElMessage } from 'element-plus'
 
 const { t } = useI18n()
 const appStore = useApplication()

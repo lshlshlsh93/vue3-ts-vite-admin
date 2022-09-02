@@ -1,5 +1,5 @@
 <template>
-  <el-card :header="headerMsg" >
+  <el-card :header="headerMsg">
     <el-row class="iconfont-row">
       <el-col
         v-for="(icon, key) in iconList"
@@ -18,12 +18,12 @@
       </el-col>
       <el-backtop :visibility-height="200" :right="100" :bottom="100" />
     </el-row>
-   
   </el-card>
 </template>
 <script setup lang="ts">
 import { useClipboard } from '@vueuse/core'
 import { getIconList } from '@/utils'
+import { ElMessage } from 'element-plus'
 
 const iconList = getIconList()
 const { copy } = useClipboard()
