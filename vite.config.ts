@@ -13,6 +13,7 @@ const pathSrc = path.resolve(__dirname, './src')
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
+  // vue3-ts-vite-admin
   base: command === 'build' ? '/vue3-ts-vite-admin/' : '/',
   server: {
     host: '0.0.0.0',

@@ -5,6 +5,7 @@ import { useTitle } from '@vueuse/core'
 import { useApplication } from '@/store'
 import { useI18n } from 'vue-i18n'
 import { messages } from '@/i18n'
+import { useResizeHandle } from '@/utils'
 const appStore = useApplication()
 const { t } = useI18n()
 const size: any = computed(() => appStore.componentSize)
@@ -17,6 +18,7 @@ onMounted(() => {
     handleThemeStyle(appStore.theme)
   })
 })
+useResizeHandle()
 </script>
 <template>
   <el-config-provider :size="size" :locale="locale">

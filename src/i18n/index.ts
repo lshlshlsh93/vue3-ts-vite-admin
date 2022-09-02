@@ -45,7 +45,7 @@ export const messages: _msg_type_ = {
 
 // 返回当前 Language
 function getLanguage() {
-  return AppCache.getLanguage()
+  return AppCache.getLanguage().length === 0 ? '' : AppCache.getLanguage()
 }
 
 export const i18n = createI18n({

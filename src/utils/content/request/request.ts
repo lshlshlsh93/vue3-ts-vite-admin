@@ -5,12 +5,15 @@ import { useUser } from '@/store'
 import { AppCache } from '@/utils'
 import { ElMessage } from 'element-plus'
 
+const mock_b_l =
+  'https://www.fastmock.site/mock/7d25773d893cdf01c4364b4922887a04/api'
+
 export const service: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  // baseURL: import.meta.env.VITE_API_URL,
+  baseURL: mock_b_l,
   timeout: 60000,
   headers: { 'Content-Type': 'application/json;charset=UTF-8' },
 })
-
 service.interceptors.request.use(
   (config: any) => {
     const userStore = useUser()
@@ -18,7 +21,6 @@ service.interceptors.request.use(
     if (userStore?.token) {
       config.headers.Authorization = 'Bearer ' + userStore.token
     }
-
     // 语言
     config.headers['Accept-Language'] = AppCache.getLanguage()
 
@@ -47,14 +49,11 @@ service.interceptors.response.use(
     if (response.status !== 200) {
       return Promise.reject(new Error(response.statusText || 'Error'))
     }
-
     const res = response.data
-
     // 响应成功
     if (res.code === 0) {
       return res
     }
-
     // 错误提示
     ElMessage.error(res.message)
 

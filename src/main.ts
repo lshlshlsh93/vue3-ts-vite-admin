@@ -5,6 +5,9 @@ import 'virtual:svg-icons-register'
 import '@/styles/scss/index.scss'
 import '@/assets/iconfont/iconfont'
 
+// 移动端适配
+// import '@/utils/common/device/flexable.ts'
+
 // 暗黑模式
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
