@@ -21,7 +21,7 @@ export default defineConfig({
     如果你要部署在 https://<USERNAME>.github.io/<REPO>/ 上，
     例如你的仓库地址为 https://github.com/<USERNAME>/<REPO>，那么请设置 base 为 '/<REPO>/'。
     */
-    base: './',
+    base: '/vue3-ts-vite-admin/',
     open: true,
   },
   resolve: {
