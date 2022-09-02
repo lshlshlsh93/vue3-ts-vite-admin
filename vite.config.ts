@@ -6,7 +6,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
-
+import viteCompression from 'vite-plugin-compression'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 const pathSrc = path.resolve(__dirname, './src')
@@ -23,6 +23,24 @@ export default defineConfig({
     */
     base: '/vue3-ts-vite-admin/',
     open: true,
+  },
+  // 优化打包处理
+  build: {
+    rollupOptions: {
+      // 打包后文件进行分包
+      output: {
+        chunkFileNames: 'static/js/[name]-[hash].js',
+        entryFileNames: 'static/js/[name]-[hash].js',
+        assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+        manualChunks(id) {
+          // 对于依赖包进行切割打包
+          if (id.includes('node_modules')) {
+            return 'vendor'
+            // return id.toString().split('yarn/')[1].split('@')[0].toString()
+          }
+        },
+      },
+    },
   },
   resolve: {
     alias: {
@@ -59,6 +77,14 @@ export default defineConfig({
     createSvgIconsPlugin({
       iconDirs: [path.resolve(__dirname, 'src/assets/svg')],
       symbolId: 'icon-[dir]-[name]',
+    }),
+    // 引入打包压缩工具
+    viteCompression({
+      verbose: true,
+      disable: false,
+      threshold: 10240,
+      algorithm: 'gzip',
+      ext: '.gz',
     }),
   ],
 })
