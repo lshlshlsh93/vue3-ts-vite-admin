@@ -6,7 +6,7 @@ import { AppCache } from '@/utils'
 import { ElMessage } from 'element-plus'
 
 export const service: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL as any,
+  baseURL: import.meta.env.VITE_API_URL,
   timeout: 60000,
   headers: { 'Content-Type': 'application/json;charset=UTF-8' },
 })

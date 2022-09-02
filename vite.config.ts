@@ -12,20 +12,22 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 const pathSrc = path.resolve(__dirname, './src')
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   server: {
+    base: command === 'build' ? '/vue3-ts-vite-admin/' : '/',
     host: '0.0.0.0',
     port: 3000,
-    /* 
-    如果你要部署在 https://<USERNAME>.github.io/ 上，你可以省略 base 使其默认为 '/'。
-    如果你要部署在 https://<USERNAME>.github.io/<REPO>/ 上，
-    例如你的仓库地址为 https://github.com/<USERNAME>/<REPO>，那么请设置 base 为 '/<REPO>/'。
-    */
-    base: '/vue3-ts-vite-admin/',
     open: true,
   },
   // 优化打包处理
   build: {
+    // 清除console和debugger
+    // terserOptions: {
+    //   compress: {
+    //     drop_console: true,
+    //     drop_debugger: true,
+    //   },
+    // },
     rollupOptions: {
       // 打包后文件进行分包
       output: {
@@ -36,7 +38,7 @@ export default defineConfig({
           // 对于依赖包进行切割打包
           if (id.includes('node_modules')) {
             return 'vendor'
-            // return id.toString().split('yarn/')[1].split('@')[0].toString()
+            // return id.toString().split('.pnpm/')[1].split('@')[0].toString()
           }
         },
       },
@@ -82,9 +84,10 @@ export default defineConfig({
     viteCompression({
       verbose: true,
       disable: false,
-      threshold: 10240,
+      deleteOriginFile: false,
+      threshold: 10240, // 10b
       algorithm: 'gzip',
       ext: '.gz',
     }),
   ],
-})
+}))

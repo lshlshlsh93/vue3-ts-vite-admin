@@ -32,14 +32,16 @@
         </el-form-item>
         <el-form-item class="form-btn">
           <el-button type="primary" @click="handleLogin">登录 </el-button>
-          <el-button type="danger" @click="handleReset">重置 </el-button>
+          <el-button type="danger" @click="handleReset(loginFormRef)"
+            >重置
+          </el-button>
         </el-form-item>
       </el-form>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { FormRules } from 'element-plus'
+import { FormInstance, FormRules } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { Lock, UserFilled } from '@element-plus/icons-vue'
 import { useUser } from '@/store'
@@ -75,8 +77,8 @@ const handleLogin = () => {
   })
 }
 // 重置表单
-const handleReset = () => {
-  loginFormRef.resetFields()
+const handleReset = (el: FormInstance) => {
+  el.resetFields()
 }
 </script>
 <style lang="scss" scoped>
