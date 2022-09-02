@@ -1,1 +1,0 @@
-import{_}from"./password.vue_vue_type_script_setup_true_lang.58e4bde3.js";import{a as e,o,p as t}from"./vendor.6ac59dd9.js";import{_ as p}from"./index.cc17ae04.js";const r=e({__name:"profile",setup(s){return(a,c)=>(o(),t(_))}});const m=p(r,[["__scopeId","data-v-39b32887"]]);export{m as default};
