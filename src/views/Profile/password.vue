@@ -4,7 +4,7 @@
       <el-form
         :size="c_s"
         ref="formRef"
-        :model-value="form"
+        :model="form"
         :rules="formRules"
         @keyup.enter="handleSubmit(formRef)"
       >
