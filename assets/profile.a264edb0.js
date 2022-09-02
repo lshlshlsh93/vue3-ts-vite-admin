@@ -1,1 +1,0 @@
-import{_}from"./password.vue_vue_type_script_setup_true_lang.5d82fb13.js";import{d as e,o,ao as t,_ as p}from"./index.2c8784c4.js";import"./el-card.929f101a.js";import"./el-form-item.a05a7e71.js";const r=e({__name:"profile",setup(s){return(a,c)=>(o(),t(_))}});const l=p(r,[["__scopeId","data-v-39b32887"]]);export{l as default};
