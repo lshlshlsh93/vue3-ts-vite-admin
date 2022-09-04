@@ -23,10 +23,19 @@ import { ITheme } from '@/interface'
  */
 class SyStemCache {
   getToken = (): string => {
-    return localCache.getCache(CacheKey._Token_Key) || ''
+    return sessionCache.getCache(CacheKey._Token_Key) || ''
   }
   setToken = (value: string): void => {
-    localCache.setCache(CacheKey._Token_Key, value)
+    sessionCache.setCache(CacheKey._Token_Key, value)
+  }
+  getTheme = (): ITheme => {
+    return (sessionCache.getCache(CacheKey._Theme_Key) as ITheme) || __df_t
+  }
+  setTheme = (value: ITheme): void => {
+    sessionCache.setCache(CacheKey._Theme_Key, value)
+  }
+  removeTheme = () => {
+    sessionCache.removeCache(CacheKey._Theme_Key)
   }
 
   getSideBarOpened = (): boolean => {
@@ -49,18 +58,6 @@ class SyStemCache {
 
   setComponentSize = (value: string): void => {
     localCache.setCache(CacheKey._Component_Size_Key, value)
-  }
-
-  getTheme = (): ITheme => {
-    return (sessionCache.getCache(CacheKey._Theme_Key) as ITheme) || __df_t
-  }
-
-  setTheme = (value: ITheme): void => {
-    sessionCache.setCache(CacheKey._Theme_Key, value)
-  }
-
-  removeTheme = () => {
-    sessionCache.removeCache(CacheKey._Theme_Key)
   }
 }
 

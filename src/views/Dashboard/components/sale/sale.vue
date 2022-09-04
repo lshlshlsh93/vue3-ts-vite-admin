@@ -17,18 +17,19 @@
       </el-tabs>
       <!-- 右侧内容 -->
       <div class="right">
-        <span class="hv-class" @click="handleSetDay">{{
-          $t('_datepicker.today')
-        }}</span>
-        <span class="hv-class" @click="handleSetWeek">{{
-          $t('_datepicker.week')
-        }}</span>
-        <span class="hv-class" @click="handleSetMonth">{{
-          $t('_datepicker.month')
-        }}</span>
-        <span class="hv-class" @click="handleSetYear">{{
-          $t('_datepicker.year')
-        }}</span>
+        <span class="hv-class" @click="handleSetDay">
+          {{ $t('_datepicker.today') }}
+        </span>
+        <span class="hv-class" @click="handleSetWeek">
+          {{ $t('_datepicker.week') }}
+        </span>
+
+        <span class="hv-class" @click="handleSetMonth">
+          {{ $t('_datepicker.month') }}
+        </span>
+        <span class="hv-class" @click="handleSetYear">
+          {{ $t('_datepicker.year') }}
+        </span>
         <el-date-picker
           :clearable="false"
           :model-Value="date"

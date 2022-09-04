@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar-settings">
+  <div id="setting" class="navbar-settings">
     <svg-icon icon="icon-setting" @click="isVisible = true" />
     <el-drawer
       v-model="isVisible"

@@ -2,8 +2,9 @@ export const StepProps: IProps[] = [
   {
     element: '#guide',
     popover: {
-      title: 'Guide on useful',
-      description: 'Guide of the popover',
+      title: 'Guide',
+      description:
+        'This will help us get familiar with the functions of the system. Please read it patiently and hope it can help you ☺ ☺ ☺ ',
       position: 'left',
       offset: 20,
     },
@@ -11,8 +12,8 @@ export const StepProps: IProps[] = [
   {
     element: '#collapse',
     popover: {
-      title: 'collapse',
-      description: 'collapse and close the sidebar menu',
+      title: 'Collapse',
+      description: 'Click the button to expand and collapse the sidebar',
       position: 'right',
       offset: 20,
     },
@@ -20,10 +21,21 @@ export const StepProps: IProps[] = [
   {
     element: '#avatar',
     popover: {
-      title: 'avatar',
-      description: 'avatar',
+      title: 'Profile',
+      description:
+        'This is the profile picture of the logged-in user. You can move the mouse over it to set your profile',
       position: 'left',
-      offset: 30,
+      offset: 40,
+    },
+  },
+  {
+    element: '#setting',
+    popover: {
+      title: 'Setting',
+      description:
+        'Here we can view and system theme information, you can set your favorite theme according to your preferences, give it a try',
+      position: 'left',
+      offset: 40,
     },
   },
 ]

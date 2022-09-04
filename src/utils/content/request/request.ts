@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 import qs from 'qs'
-
+import Nprogress from 'nprogress'
 import { useUser } from '@/store'
 import { AppCache } from '@/utils'
 import { ElMessage } from 'element-plus'
@@ -16,6 +16,7 @@ export const service: AxiosInstance = axios.create({
 })
 service.interceptors.request.use(
   (config: any) => {
+    Nprogress.start()
     const userStore = useUser()
     // token是否存在
     if (userStore?.token) {
@@ -45,6 +46,7 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (response) => {
+    Nprogress.done()
     const userStore = useUser()
     if (response.status !== 200) {
       return Promise.reject(new Error(response.statusText || 'Error'))

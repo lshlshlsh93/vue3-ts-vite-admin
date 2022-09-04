@@ -32,6 +32,6 @@ const languageChange = async (language: string) => {
   locale.value = language
 
   // 刷新页面
-  window.location.reload()
+  location.reload()
 }
 </script>

@@ -1,5 +1,9 @@
 <template>
-  <el-aside width="auto" class="aside" :class="sidebarClass">
+  <el-aside
+    :width="appStore.isSidebarOpened ? 'auto' : '64px'"
+    class="aside"
+    :class="sidebarClass"
+  >
     <!-- 侧边栏logo信息 -->
     <AsideLogo v-if="appStore.theme.isLogo" />
     <AsideMenu />

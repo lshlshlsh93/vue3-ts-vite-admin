@@ -1,33 +1,30 @@
 <template>
-  <div>
-    <el-card>
-      <el-form
-        :size="c_s"
-        ref="formRef"
-        :model="form"
-        :rules="formRules"
-        @keyup.enter="handleSubmit(formRef)"
-      >
-        <el-form-item label="用户名">
-          <span>{{ userStore.curUserName }}</span>
-        </el-form-item>
-        <el-form-item prop="passwd" label="密码">
-          <el-input v-model="form.passwd" type="password" />
-        </el-form-item>
-        <el-form-item prop="newPasswd" label="新密码">
-          <el-input v-model="form.newPasswd" type="password" />
-        </el-form-item>
-        <el-form-item prop="confirmPasswd" label="确认新密码">
-          <el-input v-model="form.confirmPasswd" type="password" />
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="handleSubmit(formRef)"
-            >确认</el-button
-          >
-        </el-form-item>
-      </el-form>
-    </el-card>
-  </div>
+  <el-card shadow="hover">
+    <el-form
+      ref="formRef"
+      :model="form"
+      :rules="formRules"
+      @keyup.enter="handleSubmit(formRef)"
+    >
+      <el-form-item label="用户名">
+        <span>{{ userStore.curUserName }}</span>
+      </el-form-item>
+      <el-form-item prop="passwd" label="密码">
+        <el-input v-model="form.passwd" type="password" />
+      </el-form-item>
+      <el-form-item prop="newPasswd" label="新密码">
+        <el-input v-model="form.newPasswd" type="password" />
+      </el-form-item>
+      <el-form-item prop="confirmPasswd" label="确认新密码">
+        <el-input v-model="form.confirmPasswd" type="password" />
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="handleSubmit(formRef)"
+          >确认</el-button
+        >
+      </el-form-item>
+    </el-form>
+  </el-card>
 </template>
 <script setup lang="ts">
 import {
@@ -43,8 +40,6 @@ const tabStore = useTab()
 const userStore = useUser()
 const router = useRouter()
 const route = useRoute()
-
-const c_s: any = ref(appStore.curComponentSize)
 
 const formRef: any = ref<FormInstance>()
 
@@ -69,13 +64,13 @@ const handleSubmit = (formEl: FormInstance) => {
     if (!valid) {
       return false
     }
-    updatePasswdApi(form).then(() => {
-      ElMessage.success({
-        message: '修改密码成功',
-        duration: 1500,
-      })
-      closeTab(router, route)
+    // updatePasswdApi(form).then(() => {
+    ElMessage.success({
+      message: '修改密码成功',
+      duration: 1500,
     })
+    closeTab(router, route)
+    // })
   })
 }
 /**

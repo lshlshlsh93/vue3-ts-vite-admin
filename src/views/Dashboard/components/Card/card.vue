@@ -9,9 +9,8 @@
           >
             <template #charts>
               <span
-                >{{ $t('_dashboard.cart_chart.week_increase') }}&nbsp;&nbsp;{{
-                  detailProps[0].content?.weekPercentage
-                }}%
+                >{{ $t('_dashboard.cart_chart.week_increase') }}
+                {{ detailProps[0].content?.weekPercentage }}%
               </span>
               &nbsp;&nbsp;
               <span
@@ -147,6 +146,7 @@ const detailProps: IDetailProp[] = [
 
 // 折线图配置项
 let lineChartOption = ref<ECOption>({})
+
 // 柱状图配置项
 let barChartOption = ref<ECOption>({})
 // 进度条

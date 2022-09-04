@@ -1,24 +1,25 @@
 <template>
   <!-- 容器 -->
-  <div class="charts" ref="echartsRef"></div>
+  <div class="base-charts">
+    <div
+      class="echarts-container"
+      ref="echartsRef"
+      :style="{ height, width }"
+    />
+  </div>
 </template>
 <script setup lang="ts">
-import { ref, watchEffect, onMounted } from 'vue'
 import { useEchart } from '@/hooks'
 import { ECOption } from '@/interface'
 
 type RendererType = 'canvas' | 'svg'
-interface IProps {
-  // 宽度
-  width?: string
-  // 高度
-  height?: string
-  // 配置项
-  options: ECOption
-  // 解析类型
-  renderType?: RendererType
+interface IEchartProps {
+  width?: string // 宽度
+  height?: string // 高度
+  options: ECOption // 配置项
+  renderType?: RendererType // 解析类型
 }
-const props = withDefaults(defineProps<IProps>(), {
+const props = withDefaults(defineProps<IEchartProps>(), {
   width: '100%',
   height: '100%',
   renderType: 'svg',
@@ -32,9 +33,4 @@ onMounted(() => {
   })
 })
 </script>
-<style lang="scss" scoped>
-.charts {
-  height: 100%;
-  width: 100%;
-}
-</style>
+<style lang="scss" scoped></style>

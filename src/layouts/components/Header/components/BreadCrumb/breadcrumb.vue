@@ -7,7 +7,6 @@
   </el-breadcrumb>
 </template>
 <script setup lang="ts">
-import { ArrowRight } from '@element-plus/icons-vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 

@@ -16,8 +16,8 @@
           <p>{{ icon }}</p>
         </div>
       </el-col>
-      <el-backtop :visibility-height="200" :right="100" :bottom="100" />
     </el-row>
+    <el-backtop :visibility-height="200" :right="100" :bottom="100" />
   </el-card>
 </template>
 <script setup lang="ts">

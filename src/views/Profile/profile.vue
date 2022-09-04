@@ -1,11 +1,12 @@
 <template>
-  <!-- <el-tabs class="tabs tab" tab-position="left">
-    <el-tab-pane label="Password"> </el-tab-pane>
+  <el-tabs class="tabs tab" tab-position="left">
     <el-tab-pane label="Config">Config</el-tab-pane>
-    <el-tab-pane label="Role">Role</el-tab-pane>
+    <el-tab-pane label="Info">Info</el-tab-pane>
     <el-tab-pane label="Task">Task</el-tab-pane>
-  </el-tabs> -->
-  <Password />
+    <el-tab-pane label="Password">
+      <Password />
+    </el-tab-pane>
+  </el-tabs>
 </template>
 <script setup lang="ts">
 import Password from './password.vue'
@@ -20,7 +21,6 @@ import Password from './password.vue'
 .tab {
   background-color: var(--el-color-white);
 }
-
 .el-tabs--right .el-tabs__content,
 .el-tabs--left .el-tabs__content {
   height: 100%;

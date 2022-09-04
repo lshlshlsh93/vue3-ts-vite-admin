@@ -11,21 +11,16 @@
       <Driver />
       <!-- 刷新 -->
       <Refresh />
-      <a
-        href="https://github.com/lshlshlsh93/fast-element-admin"
-        target="_blank"
-      >
-        <svg-icon icon="icon-github-fill" />
-      </a>
-      <a href="https://gitee.com/lshlsh666/fast-element-admin" target="_blank">
-        <svg-icon icon="icon-gitee-fill-round" />
-      </a>
+
       <FullScreen />
       <Search />
       <Notice />
       <ComponentSize />
       <Language />
       <Dark />
+      <a href="https://gitee.com/lshlsh666/fast-element-admin" target="_blank">
+        <svg-icon icon="icon-gitee-fill-round" />
+      </a>
       <Avatar />
       <Setting />
     </div>

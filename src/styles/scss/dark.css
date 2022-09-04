@@ -1,14 +1,14 @@
 html.dark {
   --el-text-color-primary: #d0d0d0;
-  --el-color-primary-light-1: var(--el-color-primary-dark-1) !important;
-  --el-color-primary-light-2: var(--el-color-primary-dark-2) !important;
-  --el-color-primary-light-3: var(--el-color-primary-dark-3) !important;
-  --el-color-primary-light-4: var(--el-color-primary-dark-4) !important;
-  --el-color-primary-light-5: var(--el-color-primary-dark-5) !important;
-  --el-color-primary-light-6: var(--el-color-primary-dark-6) !important;
-  --el-color-primary-light-7: var(--el-color-primary-dark-7) !important;
-  --el-color-primary-light-8: var(--el-color-primary-dark-8) !important;
-  --el-color-primary-light-9: var(--el-color-primary-dark-9) !important;
+  --el-color-primary-dark-1: var(--el-color-primary-dark-1) !important;
+  --el-color-primary-dark-2: var(--el-color-primary-dark-2) !important;
+  --el-color-primary-dark-3: var(--el-color-primary-dark-3) !important;
+  --el-color-primary-dark-4: var(--el-color-primary-dark-4) !important;
+  --el-color-primary-dark-5: var(--el-color-primary-dark-5) !important;
+  --el-color-primary-dark-6: var(--el-color-primary-dark-6) !important;
+  --el-color-primary-dark-7: var(--el-color-primary-dark-7) !important;
+  --el-color-primary-dark-8: var(--el-color-primary-dark-8) !important;
+  --el-color-primary-dark-9: var(--el-color-primary-dark-9) !important;
   --w-e-textarea-bg-color: #333;
   --w-e-textarea-color: #fff;
 }

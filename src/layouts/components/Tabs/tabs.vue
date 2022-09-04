@@ -60,7 +60,7 @@ import {
 import { __DEFAULT_DASHBOARD_URL } from '@/config'
 
 const { t } = useI18n()
-
+const closeable = ref(true)
 const appStore = useApplication()
 const tabStore = useTab()
 const routerStore = useRouterStore()
@@ -94,6 +94,9 @@ watch(route, () => {
   if (route.name) {
     addTab()
   }
+  // if (isAffix) {
+  //   closeable = false
+  // }
 })
 
 // 初始化tabs

@@ -9,6 +9,7 @@ import {
   TooltipComponentOption,
   GridComponentOption,
   DatasetComponentOption,
+  DataZoomComponentOption,
 } from 'echarts/components'
 
 // 通过 ComposeOption 来组合出一个只有必须组件和图表的 Option 类型
@@ -20,4 +21,5 @@ export type ECOption = ComposeOption<
   | GridComponentOption
   | DatasetComponentOption
   | PieSeriesOption
+  | DataZoomComponentOption
 >

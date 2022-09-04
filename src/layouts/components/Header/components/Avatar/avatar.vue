@@ -7,7 +7,9 @@
         :size="__DEFALUT_AVATAR_IMAGE_SIZE"
         :src="avatarUrl"
       />
-      <span>{{ userStore.curUserName }}</span>
+      <span>{{
+        userStore.curUserName ? userStore.curUserName : 'LiMing'
+      }}</span>
       <el-icon class="el-icon--right">
         <ArrowDown />
       </el-icon>
@@ -21,7 +23,7 @@
           <el-dropdown-item divided>个人中心</el-dropdown-item>
         </router-link>
 
-        <el-dropdown-item divided @click="handleLogout">退出</el-dropdown-item>
+        <el-dropdown-item divided @click="handleLogout">注销</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>

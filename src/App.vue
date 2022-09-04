@@ -18,7 +18,7 @@ onMounted(() => {
     handleThemeStyle(appStore.theme)
   })
 })
-useResizeHandle()
+// useResizeHandle()
 </script>
 <template>
   <el-config-provider :size="size" :locale="locale">

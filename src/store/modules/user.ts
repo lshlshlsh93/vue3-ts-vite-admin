@@ -1,7 +1,8 @@
-import { AppCache } from '@/utils'
+import { AppCache, sessionCache } from '@/utils'
 import { defineStore } from 'pinia'
 import { useLoginApi, useLogoutApi, useUserInfoApi } from '@/api'
 import { IUser, IUserInfo } from '@/interface'
+import { CacheKey } from '@/config'
 export const userStore = defineStore({
   id: 'app-user',
   state: (): IUserInfo => ({
@@ -20,7 +21,7 @@ export const userStore = defineStore({
     },
     setToken(value: string) {
       this.token = value
-      AppCache.setToken(value)
+      sessionCache.setCache(CacheKey._Token_Key, value)
     },
     async loginAction(loginForm: any) {
       const res: any = await useLoginApi(loginForm)

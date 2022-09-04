@@ -24,9 +24,7 @@ const props = defineProps(['title', 'count'])
   font-size: 30px;
   padding: 10px 0;
 }
-.card-chart {
-  height: 50px;
-}
+
 .card-footer {
   border-top: 1px solid #eee;
   padding-top: 10px;

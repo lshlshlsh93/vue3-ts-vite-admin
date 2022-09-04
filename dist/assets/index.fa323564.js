@@ -1,1 +1,0 @@
-import{a as l,G as u,o as s,p as r,q as p,h as _,aP as d,aX as c}from"./vendor.690eb079.js";const x=l({__name:"index",setup(m){const e=u();return(f,a)=>{const o=d,n=c;return s(),r(n,{header:"\u83DC\u5355:menu2"},{default:p(()=>[_(o,{modelValue:e.value,"onUpdate:modelValue":a[0]||(a[0]=t=>e.value=t)},null,8,["modelValue"])]),_:1})}}});export{x as default};

@@ -8,7 +8,7 @@ import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { __DEFAULT_ROUTER_LOGIN_URL, __DEFAULT_DASHBOARD_URL } from '@/config'
 
-Nprogress.configure({ showSpinner: false })
+Nprogress.configure({ showSpinner: true })
 
 const constantRoutes: RouteRecordRaw[] = [
   {
@@ -164,7 +164,7 @@ const layoutModules = import.meta.glob('/src/views/**/*.vue')
 const getDynamicComponent = (path: string): any => {
   const component = layoutModules[`/src/views/${path}.vue`]
   if (!component) {
-    console.error('component error', path)
+    console.error('component error ~_~ ', path)
   }
   return component
 }

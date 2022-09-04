@@ -15,6 +15,8 @@ declare module '*.vue' {
   export default component
 }
 
+declare function $t(key: string, params?: any): string
+
 interface ImportMetaEnv {
   readonly VITE_APP_TITLE: string
   readonly VITE_API_URL: string
