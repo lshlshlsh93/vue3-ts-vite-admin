@@ -12,12 +12,15 @@ const size: any = computed(() => appStore.componentSize)
 const locale = computed(() => messages[appStore.language].el)
 // 设置项目标题
 useTitle(__PROJECT_TITLE)
-onMounted(() => {
-  nextTick(() => {
-    // 初始化主题样式
-    handleThemeStyle(appStore.theme)
+onBeforeMount(() => {
+  document.body.removeChild(document.getElementById('spinner') as HTMLElement)
+}),
+  onMounted(() => {
+    nextTick(() => {
+      // 初始化主题样式
+      handleThemeStyle(appStore.theme)
+    })
   })
-})
 // useResizeHandle()
 </script>
 <template>

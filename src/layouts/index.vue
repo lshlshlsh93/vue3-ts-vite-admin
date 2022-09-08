@@ -13,28 +13,28 @@
         <Header />
       </el-header>
       <!-- 头部结束 -->
-      <el-scrollbar>
-        <!-- 主体开始 -->
-        <el-main class="layout-main">
-          <el-scrollbar class="layout-scrollbar">
-            <div class="layout-card" :style="layoutMainHeight">
-              <router-view v-slot="{ Component, route }">
-                <keep-alive
-                  v-if="curTheme.isTabsCache"
-                  :include="[...tabStore.cachedViews]"
-                >
-                  <component :is="Component" :key="route.name" />
-                </keep-alive>
-                <component :is="Component" v-else :key="route.name" />
-              </router-view>
-            </div>
-          </el-scrollbar>
-        </el-main>
-        <!-- 主体结束 -->
-        <!-- <el-footer> -->
-        <!-- <Footer /> -->
-        <!-- </el-footer> -->
-      </el-scrollbar>
+      <!-- <el-scrollbar> -->
+      <!-- 主体开始 -->
+      <el-main class="layout-main">
+        <el-scrollbar class="layout-scrollbar">
+          <div class="layout-card" :style="layoutMainHeight">
+            <router-view v-slot="{ Component, route }">
+              <keep-alive
+                v-if="curTheme.isTabsCache"
+                :include="[...tabStore.cachedViews]"
+              >
+                <component :is="Component" :key="route.name" />
+              </keep-alive>
+              <component :is="Component" v-else :key="route.name" />
+            </router-view>
+          </div>
+        </el-scrollbar>
+      </el-main>
+      <!-- 主体结束 -->
+      <!-- <el-footer> -->
+      <!-- <Footer /> -->
+      <!-- </el-footer> -->
+      <!-- </el-scrollbar> -->
     </el-container>
   </el-container>
 </template>

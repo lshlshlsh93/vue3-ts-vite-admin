@@ -4,7 +4,7 @@
       <Card />
       <Sale />
       <Observe />
-      <!-- <Introduce /> -->
+      <Introduce />
     </div>
   </div>
 </template>

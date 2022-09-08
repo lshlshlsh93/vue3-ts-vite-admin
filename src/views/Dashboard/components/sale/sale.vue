@@ -17,17 +17,17 @@
       </el-tabs>
       <!-- 右侧内容 -->
       <div class="right">
-        <span class="hv-class" @click="handleSetDay">
+        <span class="hv-class" @click="handleSetDay()">
           {{ $t('_datepicker.today') }}
         </span>
-        <span class="hv-class" @click="handleSetWeek">
+        <span class="hv-class" @click="handleSetWeek()">
           {{ $t('_datepicker.week') }}
         </span>
 
-        <span class="hv-class" @click="handleSetMonth">
+        <span class="hv-class" @click="handleSetMonth()">
           {{ $t('_datepicker.month') }}
         </span>
-        <span class="hv-class" @click="handleSetYear">
+        <span class="hv-class" @click="handleSetYear()">
           {{ $t('_datepicker.year') }}
         </span>
         <el-date-picker
@@ -221,43 +221,53 @@ watchEffect(() => {
   justify-content: space-between;
   position: relative;
 }
+
 .tabs {
   width: 100%;
 }
+
 .right {
   position: absolute;
   right: 0;
+
   span {
     margin: 0 10px;
   }
 }
+
 .hv-class {
   &:hover {
     cursor: pointer;
     color: var(--el-color-primary);
   }
 }
+
 .charts {
   width: 100%;
   height: 300px;
 }
+
 .date {
   width: 200px;
   margin-top: 10px;
 }
+
 .col-right {
   padding: 0 0;
 }
+
 ul {
   list-style: none;
   width: 100%;
   height: 300px;
   padding: 0;
+
   li {
     height: 8%;
     margin: 10px 0;
   }
 }
+
 .r-index {
   float: left;
   width: 20px;
@@ -267,18 +277,23 @@ ul {
   color: white;
   text-align: center;
 }
+
 .r-other-index {
   margin-left: 5px;
 }
+
 .r-other-name {
   margin-left: 45px;
 }
+
 .r-medium-1 {
   margin-left: 75px;
 }
+
 .r-medium-2 {
   margin-left: 82px;
 }
+
 .r-value {
   float: right;
 }

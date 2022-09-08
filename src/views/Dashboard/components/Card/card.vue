@@ -18,7 +18,6 @@
                   detailProps[0].content?.dayPercentage
                 }}%
               </span>
-              &nbsp;&nbsp;
             </template>
             <template #footer>
               <span

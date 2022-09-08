@@ -4,7 +4,7 @@ import { ITheme } from '@/interface'
  * 系统默认主题配置
  */
 export const __df_t: ITheme = {
-  sidebarStyle: 'dark',
+  sidebarStyle: 'light',
   headerStyle: 'light',
   primaryColor: '#409eff',
   uniqueOpened: true,
