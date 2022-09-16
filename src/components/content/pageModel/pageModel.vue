@@ -1,6 +1,14 @@
 <template>
-  <el-dialog title="" center @close="handleClose">
-    <div></div>
+  <el-dialog
+    v-model="isDialogVisible"
+    :title="props.title"
+    width="500px"
+    center
+    @close="handleClose"
+  >
+    <div>
+      <IForm ref="formRef" v-bind="props.modelConfig" v-model="formData" />
+    </div>
     <template #footer>
       <span class="dialog-footer">
         <el-button :loading="loading">取消</el-button>
@@ -12,7 +20,8 @@
   </el-dialog>
 </template>
 <script setup lang="ts">
-import { IPageFormContentConfig } from '../../../interface/common/page'
+import { IPageFormContentConfig } from '@/interface'
+import IForm from '@/components/common/Form/baseForm.vue'
 
 interface IProps {
   modelConfig: IPageFormContentConfig
@@ -26,7 +35,7 @@ const props = withDefaults(defineProps<IProps>(), {
   primaryKey: 'id',
   loading: false,
 })
-
+const isDialogVisible = ref(false)
 const emit = defineEmits<{
   (e: 'edit', value: any): void
   (e: 'add', value: any): void

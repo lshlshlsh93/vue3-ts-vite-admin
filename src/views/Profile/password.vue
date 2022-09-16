@@ -33,7 +33,7 @@ import {
   useRoute,
   useRouter,
 } from 'vue-router'
-import { ElMessage, FormInstance } from 'element-plus'
+import { ElMessage, ElNotification, FormInstance } from 'element-plus'
 import { useTab, useUser, useApplication } from '@/store'
 const appStore = useApplication()
 const tabStore = useTab()
@@ -65,10 +65,7 @@ const handleSubmit = (formEl: FormInstance) => {
       return false
     }
     // updatePasswdApi(form).then(() => {
-    ElMessage.success({
-      message: '修改密码成功',
-      duration: 1500,
-    })
+    ElNotification.success({ message: '修改密码成功', duration: 1500 })
     closeTab(router, route)
     // })
   })

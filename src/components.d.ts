@@ -8,7 +8,10 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AreaPicker: typeof import('./components/common/AreaPicker/AreaPicker.vue')['default']
+    AvatarCropper: typeof import('./components/common/AvatarCropper/index.vue')['default']
     BaseChart: typeof import('./components/common/Echarts/BaseChart/baseChart.vue')['default']
+    BaseForm: typeof import('./components/common/Form/baseForm.vue')['default']
+    BaseTable: typeof import('./components/common/Table/baseTable.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
@@ -18,6 +21,7 @@ declare module '@vue/runtime-core' {
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
+    ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
@@ -41,6 +45,7 @@ declare module '@vue/runtime-core' {
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElOption: typeof import('element-plus/es')['ElOption']
+    ElPagination: typeof import('element-plus/es')['ElPagination']
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
@@ -56,10 +61,15 @@ declare module '@vue/runtime-core' {
     Lang: typeof import('./components/content/lang/lang.vue')['default']
     MdEditor: typeof import('./components/content/MdEditor/index.vue')['default']
     PageModel: typeof import('./components/content/pageModel/pageModel.vue')['default']
+    PageSearch: typeof import('./components/content/pageSearch/pageSearch.vue')['default']
+    PageSelect: typeof import('./components/content/pageSelect/pageSelect.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ShareChart: typeof import('./components/common/Echarts/ShareChart/shareChart.vue')['default']
     SvgIcon: typeof import('./components/common/SvgIcon/svgIcon.vue')['default']
     WangEditor: typeof import('./components/content/WangEditor/index.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

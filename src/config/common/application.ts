@@ -6,6 +6,14 @@
 export const __PROJECT_TITLE: string = 'Vue3-TS-Admin'
 
 /**
+ * icon-class
+ */
+export const __AVATAR_ICON_CLASS = {
+  expand: 'icon-icon-p-star',
+  compress: 'icon-icon-mr-star',
+}
+
+/**
  * 项目侧边栏名字
  */
 export const __PROJECT_MINI_TITLE: string = 'Admin'

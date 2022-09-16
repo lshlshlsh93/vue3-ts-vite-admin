@@ -71,9 +71,7 @@ const router = useRouter()
 const activeTabName = ref<string>(route.path)
 
 // 选项卡的样式
-const tabsStyleClass = computed(
-  () => 'tabs-item-' + appStore.curTheme.tabsStyle
-)
+const tabsStyleClass = computed(() => 'tabs-item-' + appStore.theme.tabsStyle)
 
 // 是否固定
 const isAffix = (tab: any): any => {

@@ -43,7 +43,7 @@
         </el-col>
       </el-row>
     </el-card>
-    <el-card class="module" shadow="hover">
+    <el-card class="module i-bc" shadow="hover">
       <template #header>数据动态变化</template>
       <div class="content">
         <BaseChart height="200px" :options="option" />
@@ -119,7 +119,7 @@ watchEffect(() => {
     ],
   }
   option.value = {
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     grid: {
       top: '5%',
       left: '5%',
@@ -253,6 +253,7 @@ watchEffect(() => {
 .module {
   margin-bottom: 20px;
 }
+
 .tip .content {
   color: #999999;
   font-size: 14px;

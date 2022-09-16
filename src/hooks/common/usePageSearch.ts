@@ -1,12 +1,12 @@
 import useLoading from './useLoading'
-import { BackendServiceResult } from '../../interface'
+import { BackendServiceResult } from '@/interface'
 
 /** 回调行为 */
 type ICallBackAction = (item?: any) => Promise<BackendServiceResult<any>>
 
 /** 模型参数 */
 type IModelParam = {
-  queryAction: ICallBackAction
+  queryAction: ICallBackAction | any
   model?: any
 }
 interface ISearchParam {

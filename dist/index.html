@@ -10,13 +10,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
-    <script type="module" crossorigin src="/vue3-ts-vite-admin/assets/index.1feeb4a3.js"></script>
-    <link rel="modulepreload" crossorigin href="/vue3-ts-vite-admin/assets/vendor.633ba629.js">
-    <link rel="stylesheet" href="/vue3-ts-vite-admin/assets/vendor.cc9c1c4b.css">
-    <link rel="stylesheet" href="/vue3-ts-vite-admin/assets/index.9f4250ca.css">
+    <script type="module" crossorigin src="/vue3-ts-vite-admin/assets/index.dced291f.js"></script>
+    <link rel="modulepreload" crossorigin href="/vue3-ts-vite-admin/assets/vendor.4ef58cd9.js">
+    <link rel="stylesheet" href="/vue3-ts-vite-admin/assets/vendor.08d3fb47.css">
+    <link rel="stylesheet" href="/vue3-ts-vite-admin/assets/index.9493ba4b.css">
   </head>
   <body>
     <div id="app"></div>
+    <div id="spinner">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+    </div>
+
     
   </body>
+  <style type="text/css">
+    #spinner {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 50px;
+      height: 60px;
+      margin: -25px 0 0 -30px;
+      text-align: center;
+      font-size: 10px;
+    }
+    #spinner > div {
+      background-color: #189f93;
+      height: 100%;
+      width: 6px;
+      display: inline-block;
+      -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+      animation: stretchdelay 1.2s infinite ease-in-out;
+    }
+    #spinner .rect2 {
+      -webkit-animation-delay: -1.1s;
+      animation-delay: -1.1s;
+    }
+    #spinner .rect3 {
+      -webkit-animation-delay: -1s;
+      animation-delay: -1s;
+    }
+    #spinner .rect4 {
+      -webkit-animation-delay: -0.9s;
+      animation-delay: -0.9s;
+    }
+    #spinner .rect5 {
+      -webkit-animation-delay: -0.8s;
+      animation-delay: -0.8s;
+    }
+    @-webkit-keyframes stretchdelay {
+      0%,
+      40%,
+      100% {
+        -webkit-transform: scaleY(0.5);
+      }
+      20% {
+        -webkit-transform: scaleY(1);
+      }
+    }
+    @keyframes stretchdelay {
+      0%,
+      40%,
+      100% {
+        transform: scaleY(0.5);
+        -webkit-transform: scaleY(0.5);
+      }
+      20% {
+        transform: scaleY(1);
+        -webkit-transform: scaleY(1);
+      }
+    }
+  </style>
 </html>

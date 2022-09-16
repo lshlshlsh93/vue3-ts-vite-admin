@@ -1,0 +1,1 @@
+import{a as r,M as o,aQ as u,x as n,s as c}from"./vendor.4ef58cd9.js";const m=r({created(){const{params:e,query:s}=n(),{path:a}=e;c().replace({path:"/"+a,query:s}).then(()=>{o.success({message:"\u5237\u65B0\u6210\u529F",duration:1e3})}).catch(t=>{console.warn(t)})},render(){return u("div")}});export{m as default};
